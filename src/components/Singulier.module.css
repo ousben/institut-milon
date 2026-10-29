@@ -1,0 +1,101 @@
+.section {
+  background: var(--charbon);
+  color: var(--blanc);
+}
+
+.inner {
+  max-width: var(--conteneur);
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: clamp(72px, 9vw, 144px) var(--marge-page);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.titre {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(48px, 8vw, 128px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--blanc);
+  text-wrap: balance;
+}
+
+.intro {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: clamp(32px, 5vw, 64px);
+}
+
+.introInner {
+  flex: 0 1 560px;
+  min-width: 0;
+}
+
+.texte {
+  margin: 0;
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.55;
+  color: var(--blanc);
+  text-wrap: pretty;
+}
+
+.lien {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--blanc);
+  text-decoration: none;
+  padding: 6px 0;
+  transition: color 200ms ease;
+}
+.lien:hover {
+  color: var(--carmin);
+  text-decoration: none;
+}
+
+.valeurs {
+  margin-top: clamp(56px, 7vw, 104px);
+  border-bottom: 1px solid var(--filet-charbon);
+}
+
+.valeur {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 48px;
+  padding: clamp(20px, 2.6vw, 36px) 0;
+  border-top: 1px solid var(--filet-charbon);
+  color: var(--blanc);
+  transition: color 250ms ease;
+}
+.valeur:hover {
+  color: var(--carmin);
+}
+
+.valeurTitre {
+  margin: 0;
+  font-size: clamp(40px, 6.4vw, 104px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: inherit;
+}
+
+.article {
+  font-weight: 400;
+}
+
+.valeurTexte {
+  margin: 0;
+  flex: 0 1 360px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--texte-sur-charbon);
+  text-wrap: pretty;
+}

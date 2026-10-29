@@ -1,0 +1,117 @@
+.hero {
+  max-width: var(--conteneur);
+  margin: 0 auto;
+  min-height: calc(100svh - var(--header-h, 72px));
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 4svh, 48px) var(--marge-page) clamp(20px, 3vw, 48px);
+}
+
+.titreZone {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  padding: clamp(24px, 4svh, 64px) 0;
+}
+
+/* Deux lignes imposées ; --hero-fs est calculée en JS (useFitText) */
+.titre {
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  font-size: var(--hero-fs, clamp(36px, 9.4vw, 148px));
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+  color: var(--noir);
+}
+
+.ligne {
+  display: block;
+  width: max-content;
+  white-space: nowrap;
+}
+
+/* Mot mis en avant : bouton pressable, barre épaisse dessous */
+.mot {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: var(--noir);
+  transition: color 300ms ease;
+  cursor: pointer;
+}
+.actif {
+  color: var(--carmin);
+}
+
+.barre {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.095em;
+  height: 0.11em;
+  background: var(--barre-inactive);
+  overflow: hidden;
+}
+
+.remplissage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--noir);
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform var(--duree-barre) var(--ease);
+}
+.actif .remplissage {
+  transform: scaleX(1);
+}
+
+.bas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 64px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.texte {
+  margin: 0;
+  max-width: 46ch;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--charbon);
+  text-wrap: pretty;
+}
+
+.liens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+}
+
+.lien {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--noir);
+  text-decoration: none;
+  padding: 10px 0;
+}
+.lien:hover {
+  color: var(--carmin);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .remplissage {
+    transition: none;
+  }
+}

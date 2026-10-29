@@ -1,0 +1,77 @@
+.footer {
+  background: var(--charbon);
+  color: var(--blanc);
+}
+
+.inner {
+  max-width: var(--conteneur);
+  margin: 0 auto;
+  padding: 64px var(--marge-page) 32px;
+}
+
+.haut {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+.logoLink {
+  --logo-h: 56px;
+  --logo-w: 54px;
+  --logo-institut: 12px;
+  --logo-milon: 30px;
+  --logo-gap: 14px;
+  --logo-text-gap: 4px;
+  display: flex;
+  align-items: center;
+  align-self: start;
+  color: var(--blanc);
+  text-decoration: none;
+  transition: opacity 200ms ease;
+}
+.logoLink:hover {
+  color: var(--blanc);
+  opacity: 0.8;
+}
+
+.colonne {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 17px;
+}
+
+.contact {
+  color: var(--blanc);
+  text-decoration: underline;
+  text-decoration-color: var(--blanc);
+}
+.contact:hover {
+  color: var(--blanc);
+}
+
+.bas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  justify-content: space-between;
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--filet-charbon);
+  font-size: 14px;
+  color: var(--texte-sur-charbon);
+}
+
+.mentions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.mention {
+  color: var(--texte-sur-charbon);
+  text-decoration: none;
+}
+.mention:hover {
+  color: var(--blanc);
+}

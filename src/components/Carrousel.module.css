@@ -1,0 +1,146 @@
+.carrousel {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+  padding: clamp(32px, 5svh, 64px) 0;
+  background: var(--blanc);
+  overflow: hidden;
+}
+.carrousel:focus-visible {
+  outline: 2px solid var(--carmin);
+  outline-offset: -4px;
+}
+
+/* La diapositive active est centrée ; les voisines dépassent sur les côtés */
+.viewport {
+  --car-w: min(66vw, 1240px);
+  position: relative;
+  height: min(74svh, 58vw);
+  min-height: 320px;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+@media (max-width: 767px) {
+  .viewport {
+    --car-w: 86vw;
+  }
+}
+
+.piste {
+  display: flex;
+  gap: 20px;
+  height: 100%;
+  transform: translateX(
+    calc(50vw - var(--car-w) / 2 - var(--car-i, 0) * (var(--car-w) + 20px) + var(--car-drag, 0px))
+  );
+  transition: transform var(--duree-carrousel) var(--ease);
+}
+
+.diapo {
+  position: relative;
+  flex: none;
+  width: var(--car-w);
+  height: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--charbon);
+  cursor: pointer;
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  background-color: var(--charbon);
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+}
+
+.voile {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 38%);
+}
+
+.legende {
+  position: absolute;
+  left: clamp(20px, 2.4vw, 40px);
+  top: clamp(20px, 2.4vw, 36px);
+  margin: 0;
+  max-width: none;
+  font-size: clamp(24px, 2.6vw, 40px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--blanc);
+}
+
+/* Boutons ronds blancs aux bords de la diapositive active */
+.bouton {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--blanc);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  z-index: 2;
+}
+.bouton:hover {
+  background: var(--gris-fond);
+}
+.bouton[hidden] {
+  display: none;
+}
+.precedent {
+  left: calc(50% - var(--car-w) / 2);
+}
+.suivant {
+  left: calc(50% + var(--car-w) / 2);
+}
+
+.points {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.point {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.point span {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--filet-gris);
+  transition: background-color 200ms ease;
+}
+.point[aria-current="true"] span {
+  background: var(--noir);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .piste {
+    transition: none;
+  }
+}

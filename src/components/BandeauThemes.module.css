@@ -1,0 +1,37 @@
+.bandeau {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(4px, 1.2svh, 16px);
+  margin-top: clamp(56px, 8vw, 112px);
+  padding: clamp(32px, 5svh, 64px) 0;
+  background: var(--gris-fond);
+  overflow: hidden;
+}
+
+.ligne {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.mot {
+  display: inline-flex;
+  align-items: center;
+  font-size: clamp(40px, min(7vw, 12svh), 120px);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--charbon);
+}
+
+.oblique {
+  display: inline-block;
+  margin: 0 0.35em;
+  color: var(--carmin);
+  font-weight: 200;
+}

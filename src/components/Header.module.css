@@ -1,0 +1,149 @@
+/* Barre fixe : transparente et carmin en haut de page, fond carmin et contenu blanc dès qu'on défile */
+.header {
+  --nav-fg: var(--carmin);
+  --nav-cta-hover: var(--blanc);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: transparent;
+  color: var(--nav-fg);
+  transform: translateY(0);
+  transition:
+    transform var(--duree-nav) var(--ease),
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+.plein {
+  --nav-fg: var(--blanc);
+  --nav-cta-hover: var(--carmin);
+  background: var(--carmin);
+}
+
+.masque {
+  transform: translateY(-100%);
+}
+
+.inner {
+  max-width: var(--conteneur);
+  margin: 0 auto;
+  padding: 12px var(--marge-page);
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 32px;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  color: var(--nav-fg);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+.logoLink:hover {
+  color: var(--nav-fg);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.lien {
+  color: var(--nav-fg);
+  text-decoration: none;
+  padding: 10px 0;
+  transition: color 200ms ease;
+}
+.lien:hover {
+  color: var(--nav-fg);
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid var(--nav-fg);
+  color: var(--nav-fg);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    color 200ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease;
+}
+.cta:hover {
+  background: var(--nav-fg);
+  color: var(--nav-cta-hover);
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--nav-fg);
+  cursor: pointer;
+}
+.burger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--nav-fg);
+}
+
+/* Sous 1100 px : les liens passent dans le menu plein écran, « Nous contacter » reste visible */
+@media (max-width: 1099px) {
+  .nav {
+    display: none;
+  }
+  .burger {
+    display: inline-flex;
+  }
+  .cta {
+    padding: 0 16px;
+  }
+}
+
+/* Sous 420 px : logo et bouton réduits */
+@media (max-width: 419px) {
+  .logoLink {
+    --logo-h: 32px;
+  }
+  .cta {
+    padding: 0 12px;
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header {
+    transition:
+      background-color 200ms ease,
+      color 200ms ease;
+  }
+}

@@ -1,0 +1,131 @@
+/* Menu plein écran (sous 1100 px) */
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  background: var(--charbon);
+  color: var(--blanc);
+  overflow-y: auto;
+}
+.menu[hidden] {
+  display: none;
+}
+
+.barre {
+  max-width: var(--conteneur);
+  width: 100%;
+  margin: 0 auto;
+  padding: 12px var(--marge-page);
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  color: var(--blanc);
+  text-decoration: none;
+}
+.logoLink:hover {
+  color: var(--blanc);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--blanc);
+  color: var(--blanc);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.cta:hover {
+  background: var(--blanc);
+  color: var(--charbon);
+}
+
+.fermer {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--blanc);
+  cursor: pointer;
+}
+.fermer span {
+  position: absolute;
+  left: 9px;
+  top: 21px;
+  width: 26px;
+  height: 2px;
+  background: var(--blanc);
+  transform: rotate(45deg);
+}
+.fermer span:last-child {
+  transform: rotate(-45deg);
+}
+
+.nav {
+  flex: 1 1 auto;
+  max-width: var(--conteneur);
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(32px, 8svh, 96px) var(--marge-page) 48px;
+}
+
+.liens {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(8px, 1.6svh, 16px);
+}
+
+.lien {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35em;
+  color: var(--gris-fond);
+  text-decoration: none;
+  font-size: clamp(36px, 8vw, 72px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+.lien:hover {
+  color: var(--blanc);
+  text-decoration: underline;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.12em;
+}
+
+.chevron {
+  font-weight: 300;
+  font-size: 0.6em;
+  color: var(--texte-sur-charbon);
+}
+
+@media (max-width: 419px) {
+  .logoLink {
+    --logo-h: 32px;
+  }
+  .cta {
+    padding: 0 12px;
+    font-size: 15px;
+  }
+}

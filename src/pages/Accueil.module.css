@@ -1,0 +1,6 @@
+.main {
+  padding-top: var(--header-h, 72px);
+}
+.main:focus {
+  outline: none;
+}
