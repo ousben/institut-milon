@@ -1,0 +1,151 @@
+/* Institut Milon — typographie
+   Une seule famille : Inter (variable, wght 100–900, opsz 14–32). Remplace Cormorant Garamond + Manrope
+   (brandbook §05) depuis le 29 octobre 2026.
+   Échelle en rem (base 16px), interlignes sans unité, approches en em.
+   Plus le texte est grand, plus l'approche est négative ; jamais d'approche négative sous 16px.
+   Les styles s'écrivent avec les propriétés détaillées (font-size, font-weight…), jamais avec le
+   raccourci `font`, qui réinitialise le crénage, l'optical sizing et les fonctionnalités OpenType. */
+
+:root {
+  /* Famille et fonctionnalités OpenType */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-features: "calt" 1, "ss03" 1;   /* ss03 : guillemets et virgules arrondis. cv11 (a à un étage) non retenu. */
+
+  /* Graisses génériques */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Display / hero */
+  --fs-display: clamp(2.75rem, 1.5rem + 5.5vw, 5.5rem);
+  --fw-display: 700;
+  --lh-display: 1.05;
+  --ls-display: -0.025em;   /* spec −0,035em, adouci : le dessin Display (opsz 32) est déjà resserré */
+
+  /* H2 de section */
+  --fs-h2: clamp(2.25rem, 1.2rem + 3.8vw, 4rem);
+  --fw-h2: 700;
+  --lh-h2: 1.05;
+  --ls-h2: -0.02em;         /* spec −0,03em, adouci pour la même raison */
+
+  /* H3 */
+  --fs-h3: 1.5rem;
+  --fw-h3: 600;
+  --lh-h3: 1.2;
+  --ls-h3: -0.015em;
+
+  /* Titre de carte / d'item */
+  --fs-card: 1.25rem;
+  --fw-card: 600;
+  --lh-card: 1.25;
+  --ls-card: -0.01em;
+
+  /* Ticker / grands tags (grande citation du manifeste) */
+  --fs-ticker: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+  --fw-ticker: 300;
+  --lh-ticker: 1.2;
+  --ls-ticker: -0.02em;
+
+  /* Eyebrow (sur-titre de section, en casse de phrase) */
+  --fs-eyebrow: 1rem;
+  --fw-eyebrow: 600;
+  --lh-eyebrow: 1.3;
+  --ls-eyebrow: 0;
+
+  /* Intro / chapô */
+  --fs-lead: 1.25rem;
+  --fw-lead: 400;
+  --lh-lead: 1.5;
+  --ls-lead: -0.005em;
+
+  /* Corps */
+  --fs-body: 1.0625rem;
+  --fw-body: 400;
+  --lh-body: 1.55;
+  --ls-body: 0;
+
+  /* Méta / légendes */
+  --fs-meta: 0.9375rem;
+  --fw-meta: 400;
+  --lh-meta: 1.4;
+  --ls-meta: 0.005em;
+
+  /* Navigation */
+  --fs-nav: 0.9375rem;
+  --fw-nav: 400;
+  --lh-nav: 1.2;
+  --ls-nav: 0;
+
+  /* Boutons et liens CTA (aussi : libellés de champ) */
+  --fs-button: 1rem;
+  --fw-button: 600;
+  --lh-button: 1.2;
+  --ls-button: 0;
+
+  /* Mentions légales (aussi : annotations, valeurs techniques) */
+  --fs-legal: 0.875rem;
+  --fw-legal: 400;
+  --lh-legal: 1.4;
+  --ls-legal: 0.01em;
+
+  /* Libellés en capitales */
+  --fs-caps: 0.75rem;
+  --fw-caps: 600;
+  --lh-caps: 1.3;
+  --ls-caps: 0.06em;
+
+  /* Rôles dérivés du ticker, propres à l'Institut */
+  --fs-quote: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);   /* citations moyennes, signature du footer */
+  --fw-quote: 300;
+  --lh-quote: 1.3;
+  --ls-quote: -0.015em;
+  --fs-numeral: clamp(1.5rem, 1.2rem + 0.8vw, 2rem);    /* numéros 01, 02… */
+  --fw-numeral: 300;
+  --lh-numeral: 1;
+  --ls-numeral: -0.02em;
+
+  /* Logo : lockup construit en proportion de l'emblème (Logo.jsx) */
+  --fw-wordmark: 700;   /* MILON */
+  --ls-wordmark: 0.02em;
+  --fw-lockup: 600;     /* I N S T I T U T */
+  --ls-lockup: 0.34em;
+  --lh-lockup: 1;
+  --lh-wordmark: 0.85;
+
+  /* Largeur de lecture des paragraphes */
+  --measure: 66ch;
+  --measure-min: 60ch;
+  --measure-max: 70ch;
+
+  /* Plans de travail réseaux sociaux : px à l'échelle 1080 (réduits par transform à l'aperçu) */
+  --fs-art-xl: 112px;
+  --fs-art-l: 88px;
+  --fs-art-m: 76px;
+  --fs-art-s: 60px;
+  --fs-art-xs: 52px;
+  --fw-art-title: 700;
+  --lh-art-title: 1.05;
+  --ls-art-xl: -0.035em;
+  --ls-art-l: -0.03em;
+  --ls-art-m: -0.03em;
+  --ls-art-s: -0.025em;
+  --ls-art-xs: -0.02em;
+  --ls-art-caps: -0.01em;     /* titres en capitales */
+  --fw-art-light: 300;        /* citations */
+  --lh-art-light: 1.2;
+  --ls-art-light: -0.02em;
+  --fs-art-body: 40px;
+  --fw-art-body: 400;
+  --lh-art-body: 1.45;
+  --ls-art-body: 0;
+  --fs-art-label: 40px;       /* sur-titre et signature, en capitales */
+  --fw-art-label: 600;
+  --lh-art-label: 1;
+  --ls-art-label: 0.06em;
+  --fs-art-kicker: 30px;      /* rubrique, en capitales */
+  --fs-art-meta: 32px;        /* fonction, date, étiquette photo */
+  --fw-art-meta: 500;
+  --lh-art-meta: 1.3;
+}

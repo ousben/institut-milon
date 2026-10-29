@@ -1,0 +1,48 @@
+/* Institut Milon — espacements et mise en page (brandbook §09)
+   Base 4/8px ; sections 72–104px desktop, 48–64px mobile.
+   Conteneur max 1200px ; marges mobiles 20–24px.
+   Grille 12 colonnes desktop / 6 tablette / 4 mobile.
+   Breakpoints : mobile < 768px ; tablette 768–1023px ; desktop ≥ 1024px
+   (les custom properties ne fonctionnent pas dans les media queries : valeurs à recopier). */
+
+:root {
+  --im-space-0: 0;
+  --im-space-1: 4px;
+  --im-space-2: 8px;
+  --im-space-3: 12px;
+  --im-space-4: 16px;
+  --im-space-5: 20px;
+  --im-space-6: 24px;
+  --im-space-7: 32px;
+  --im-space-8: 40px;
+  --im-space-9: 48px;
+  --im-space-10: 56px;
+  --im-space-11: 64px;
+  --im-space-12: 72px;
+  --im-space-13: 88px;
+  --im-space-14: 104px;
+
+  /* Rythme vertical des sections */
+  --im-section-y: clamp(48px, 7.2vw, 104px);      /* 48 mobile → 104 desktop large */
+  --im-section-y-compact: clamp(48px, 5vw, 72px);
+
+  /* Conteneur et grille */
+  --im-container: 1200px;
+  --im-container-narrow: 800px;
+  --im-page-margin: clamp(20px, 3.2vw, 32px);     /* 20–24px sur mobile */
+  --im-grid-columns: 12;                          /* 6 en tablette, 4 en mobile */
+  --im-grid-gap: clamp(16px, 2vw, 24px);
+
+  --im-bp-tablet: 768px;
+  --im-bp-desktop: 1024px;
+
+  /* Contrôles */
+  --im-control-height: 48px;      /* boutons et champs : 48–52px */
+  --im-control-height-lg: 52px;
+  --im-control-pad-x: 24px;
+  --im-hit-min: 44px;
+
+  /* Header */
+  --im-header-height: 80px;
+  --im-header-height-mobile: 64px;
+}

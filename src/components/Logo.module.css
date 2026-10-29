@@ -1,0 +1,39 @@
+/* Emblème (masque alpha) + lockup INSTITUT / MILON, proportionnels à --logo-h.
+   Les variables peuvent être surchargées par le conteneur (barre, menu, pied de page). */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--logo-gap, 10px);
+  color: inherit;
+}
+
+.embleme {
+  display: block;
+  flex: none;
+  width: var(--logo-w, calc(var(--logo-h, 40px) * 0.97));
+  height: var(--logo-h, 40px);
+  background: currentColor;
+  -webkit-mask: url("/assets/logo/embleme-masque-400.png") center / contain no-repeat;
+  mask: url("/assets/logo/embleme-masque-400.png") center / contain no-repeat;
+  transition: background-color var(--duree-couleur) ease;
+}
+
+.lockup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--logo-text-gap, 3px);
+}
+
+.institut {
+  font-size: var(--logo-institut, calc(var(--logo-h, 40px) * 0.225));
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  line-height: 1;
+}
+
+.milon {
+  font-size: var(--logo-milon, calc(var(--logo-h, 40px) * 0.55));
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 0.85;
+}

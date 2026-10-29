@@ -1,0 +1,79 @@
+/* Institut Milon — couleurs
+   « Le luxe de la retenue » (brandbook §05). Trois niveaux :
+   1. Palette de référence (valeurs exactes du brandbook)
+   2. Teintes observées dans les visuels du brandbook (couverture, direction du feed, encadrés)
+   3. Dérivés d'accessibilité — proposition du design system, à faire valider */
+
+:root {
+  /* 1 — Palette de référence */
+  --im-bleu-ionien: #203845;      /* textes, boutons, fonds sombres, navigation */
+  --im-ivoire-mineral: #F3EFE7;   /* arrière-plan, papeterie, sections éditoriales */
+  --im-bronze-patine: #A58A68;    /* logo, séparateurs, détails, repères — jamais en petit texte */
+  --im-terre-cuite: #B56B53;      /* accent exceptionnel, repères graphiques ponctuels */
+  --im-blanc: #FFFFFF;            /* cartes, formulaires, respiration */
+  --im-gris-ardoise: #56646C;     /* texte secondaire (5,33:1 sur ivoire) */
+  --im-noir: #000000;             /* logo noir sur blanc : documents administratifs */
+
+  /* 2 — Observées dans le brandbook */
+  --im-bronze-clair: #D1B995;       /* textes bronze sur bleu (couverture) — 6,47:1 */
+  --im-ivoire-ombre: #E7E0D4;       /* tuiles claires du feed, encadré « promesse » */
+  --im-gris-ligne: #7B8A8E;         /* filet sur bleu (couverture) ; ≥ 3:1 sur ivoire, blanc et bleu */
+  --im-terre-cuite-voile: #F5EDE5;  /* fond d'encadré « À valider » */
+
+  /* 3 — Dérivés d'accessibilité (même teinte, luminance ajustée en OKLCH) */
+  --im-bleu-nuit: #132B38;          /* hover / pressed des actions bleues */
+  --im-bleu-releve: #324B58;        /* survol sur fond bleu */
+  --im-bronze-texte: #7F6748;       /* petits textes « bronze » sur ivoire (4,65:1) et blanc (5,34:1) */
+  --im-terre-cuite-texte: #9E563F;  /* messages d'erreur (4,75:1 sur ivoire, 5,45:1 sur blanc) */
+
+  /* Transparences */
+  --im-bleu-a06: rgba(32, 56, 69, 0.06);
+  --im-bleu-a12: rgba(32, 56, 69, 0.12);
+  --im-bleu-a20: rgba(32, 56, 69, 0.20);
+  --im-ivoire-a16: rgba(243, 239, 231, 0.16);
+  --im-ivoire-a28: rgba(243, 239, 231, 0.28);
+  --im-ivoire-a72: rgba(243, 239, 231, 0.72);
+
+  /* Alias sémantiques — surfaces */
+  --im-surface-page: var(--im-ivoire-mineral);
+  --im-surface-card: var(--im-blanc);
+  --im-surface-editorial: var(--im-ivoire-ombre);
+  --im-surface-inverse: var(--im-bleu-ionien);
+  --im-surface-inverse-raised: var(--im-bleu-releve);
+  --im-surface-notice: var(--im-terre-cuite-voile);
+
+  /* Alias sémantiques — textes */
+  --im-text-primary: var(--im-bleu-ionien);
+  --im-text-secondary: var(--im-gris-ardoise);
+  --im-text-accent: var(--im-bronze-texte);
+  --im-text-link: var(--im-bleu-ionien);
+  --im-text-link-hover: var(--im-bleu-nuit);
+  --im-text-error: var(--im-terre-cuite-texte);
+  --im-text-inverse: var(--im-ivoire-mineral);
+  --im-text-inverse-secondary: var(--im-ivoire-a72);
+  --im-text-inverse-accent: var(--im-bronze-clair);
+
+  /* Alias sémantiques — traits et bordures */
+  --im-border-ornament: var(--im-bronze-patine);
+  --im-border-subtle: var(--im-bleu-a12);
+  --im-border-field: var(--im-gris-ligne);
+  --im-border-field-hover: var(--im-gris-ardoise);
+  --im-border-strong: var(--im-bleu-ionien);
+  --im-border-error: var(--im-terre-cuite-texte);
+  --im-border-inverse: var(--im-gris-ligne);
+  --im-border-inverse-subtle: var(--im-ivoire-a16);
+  --im-focus-ring: var(--im-bleu-ionien);
+  --im-focus-ring-inverse: var(--im-ivoire-mineral);
+
+  /* Alias sémantiques — actions */
+  --im-action-primary: var(--im-bleu-ionien);
+  --im-action-primary-hover: var(--im-bleu-nuit);
+  --im-action-primary-text: var(--im-ivoire-mineral);
+  --im-action-secondary-hover: var(--im-bleu-a06);
+  --im-action-inverse: var(--im-ivoire-mineral);
+  --im-action-inverse-hover: var(--im-blanc);
+  --im-action-inverse-text: var(--im-bleu-ionien);
+  --im-action-disabled: var(--im-ivoire-ombre);
+  --im-action-disabled-text: var(--im-gris-ligne);
+  --im-selection: var(--im-bronze-clair);
+}

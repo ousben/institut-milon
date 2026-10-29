@@ -1,0 +1,19 @@
+/* Institut Milon — mouvement
+   Transitions 150–300ms ; animations lentes 200–300ms ; aucune animation bloquante ;
+   respect de prefers-reduced-motion (brandbook §05 et §09). */
+
+:root {
+  --im-duration-fast: 150ms;    /* couleurs, soulignements */
+  --im-duration-base: 200ms;    /* bordures, fonds, icônes */
+  --im-duration-slow: 300ms;    /* accordéon, menu mobile, apparitions */
+  --im-ease: cubic-bezier(0.2, 0, 0, 1);        /* décélération calme */
+  --im-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --im-duration-fast: 0ms;
+    --im-duration-base: 0ms;
+    --im-duration-slow: 0ms;
+  }
+}

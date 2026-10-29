@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./image-slot.js"></script>
+<style>
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url("fonts/inter-latin-opsz-normal.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url("fonts/inter-latin-ext-opsz-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+1E00-1EFF}
+body{margin:0;background:#ffffff;color:#222222;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-feature-settings:"calt" 1,"ss03" 1;font-optical-sizing:auto;-webkit-font-smoothing:antialiased}
+a{color:#222222;text-decoration-color:#a41034;text-underline-offset:.2em}
+a:hover{color:#a41034}
+</style>
+</helmet>
+<header ref="{{ headerRef }}" onFocus="{{ revealNav }}" style="position:fixed;top:0;left:0;right:0;z-index:20;background:var(--nav-bg, transparent);color:var(--nav-fg, #a41034);transform:translateY(var(--nav-y, 0));transition:var(--nav-transition, transform 300ms cubic-bezier(0.2, 0, 0, 1), background-color 200ms ease, color 200ms ease)">
+  <div style="max-width:1440px;margin:0 auto;padding:12px clamp(20px,3vw,48px);min-height:72px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:12px 32px">
+    <a href="#top" aria-label="Institut Milon, accueil" style="display:flex;align-items:center;gap:10px;color:var(--nav-fg, #a41034);text-decoration:none;transition:color 200ms ease">
+      <span aria-hidden="true" style="display:block;flex:none;width:calc(var(--logo-h, 40px) * 0.97);height:var(--logo-h, 40px);background:var(--nav-fg, #a41034);-webkit-mask:url(assets/logo/embleme-masque-400.png) center / contain no-repeat;mask:url(assets/logo/embleme-masque-400.png) center / contain no-repeat;transition:background-color 200ms ease"></span>
+      <span aria-hidden="true" style="display:flex;flex-direction:column;gap:3px"><span style="font-size:calc(var(--logo-h, 40px) * 0.225);font-weight:600;letter-spacing:.34em;line-height:1">INSTITUT</span><span style="font-size:calc(var(--logo-h, 40px) * 0.55);font-weight:700;letter-spacing:.02em;line-height:.85">MILON</span></span>
+    </a>
+    <nav aria-label="Navigation principale" style="display:var(--nav-desktop-display, flex);flex-wrap:wrap;gap:8px 32px;font-size:16px;line-height:1.2">
+      <a href="#singulier" style="color:var(--nav-fg, #a41034);text-decoration:none;padding:10px 0;transition:color 200ms ease" style-hover="text-decoration:underline;text-decoration-color:currentColor">L’Institut</a>
+      <a href="#approche" style="color:var(--nav-fg, #a41034);text-decoration:none;padding:10px 0;transition:color 200ms ease" style-hover="text-decoration:underline;text-decoration-color:currentColor">Notre approche</a>
+      <a href="#formations" style="color:var(--nav-fg, #a41034);text-decoration:none;padding:10px 0;transition:color 200ms ease" style-hover="text-decoration:underline;text-decoration-color:currentColor">Formations</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a href="Contact Milon.dc.html" style="display:inline-flex;align-items:center;min-height:44px;padding:0 var(--cta-px, 20px);border:1px solid var(--nav-fg, #a41034);color:var(--nav-fg, #a41034);text-decoration:none;font-size:var(--cta-fs, 16px);font-weight:600;white-space:nowrap;transition:color 200ms ease, border-color 200ms ease, background-color 200ms ease" style-hover="background:var(--nav-fg, #a41034);color:var(--nav-cta-hover, #ffffff)">Nous contacter</a>
+      <button ref="{{ burgerRef }}" type="button" aria-label="Ouvrir le menu" aria-expanded="{{ menuOpenStr }}" aria-controls="milon-menu" onClick="{{ openMenu }}" style="display:var(--nav-burger-display, none);flex-direction:column;align-items:center;justify-content:center;gap:6px;width:44px;height:44px;padding:0;border:0;background:none;cursor:pointer;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease">
+        <span aria-hidden="true" style="display:block;width:26px;height:2px;background:var(--nav-fg, #a41034)"></span>
+        <span aria-hidden="true" style="display:block;width:26px;height:2px;background:var(--nav-fg, #a41034)"></span>
+        <span aria-hidden="true" style="display:block;width:26px;height:2px;background:var(--nav-fg, #a41034)"></span>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="milon-menu" role="dialog" aria-modal="true" aria-label="Menu" onKeyDown="{{ menuKey }}" style="display:var(--menu-display, none);position:fixed;inset:0;z-index:60;flex-direction:column;background:#222222;color:#ffffff;overflow-y:auto">
+  <div style="max-width:1440px;width:100%;margin:0 auto;padding:12px clamp(20px,3vw,48px);min-height:72px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:12px">
+    <a href="#top" onClick="{{ closeMenu }}" aria-label="Institut Milon, accueil" style="display:flex;align-items:center;gap:10px;color:#ffffff;text-decoration:none;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease">
+      <span aria-hidden="true" style="display:block;flex:none;width:calc(var(--logo-h, 40px) * 0.97);height:var(--logo-h, 40px);background:#ffffff;-webkit-mask:url(assets/logo/embleme-masque-400.png) center / contain no-repeat;mask:url(assets/logo/embleme-masque-400.png) center / contain no-repeat;transition:background-color 200ms ease"></span>
+      <span aria-hidden="true" style="display:flex;flex-direction:column;gap:3px"><span style="font-size:calc(var(--logo-h, 40px) * 0.225);font-weight:600;letter-spacing:.34em;line-height:1">INSTITUT</span><span style="font-size:calc(var(--logo-h, 40px) * 0.55);font-weight:700;letter-spacing:.02em;line-height:.85">MILON</span></span>
+    </a>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a href="Contact Milon.dc.html" onClick="{{ closeMenu }}" style="display:inline-flex;align-items:center;min-height:44px;padding:0 var(--cta-px, 20px);border:1px solid #ffffff;color:#ffffff;text-decoration:none;font-size:var(--cta-fs, 16px);font-weight:600;white-space:nowrap;transition:color 200ms ease, border-color 200ms ease, background-color 200ms ease" style-hover="background:#ffffff;color:#222222">Nous contacter</a>
+      <button ref="{{ closeRef }}" type="button" aria-label="Fermer le menu" onClick="{{ closeMenu }}" style="position:relative;width:44px;height:44px;padding:0;border:0;background:none;cursor:pointer;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease">
+        <span aria-hidden="true" style="position:absolute;left:9px;top:21px;width:26px;height:2px;background:#ffffff;transform:rotate(45deg)"></span>
+        <span aria-hidden="true" style="position:absolute;left:9px;top:21px;width:26px;height:2px;background:#ffffff;transform:rotate(-45deg)"></span>
+      </button>
+    </div>
+  </div>
+  <nav aria-label="Menu principal" style="flex:1 1 auto;max-width:1440px;width:100%;margin:0 auto;padding:clamp(32px,8svh,96px) clamp(20px,3vw,48px) 48px;box-sizing:border-box">
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:clamp(8px,1.6svh,16px)">
+        <a href="#singulier" onClick="{{ closeMenu }}" style="display:inline-flex;align-items:baseline;gap:.35em;color:#f4f4f4;text-decoration:none;font-size:clamp(36px,8vw,72px);font-weight:700;line-height:1.15;letter-spacing:-0.03em;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#ffffff;text-decoration:underline;text-decoration-thickness:.06em;text-underline-offset:.12em">L’Institut<span data-arrow="right" aria-hidden="true" style="font-weight:300;font-size:.6em;color:#bdbdbd;display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">›</span></a>
+        <a href="#approche" onClick="{{ closeMenu }}" style="display:inline-flex;align-items:baseline;gap:.35em;color:#f4f4f4;text-decoration:none;font-size:clamp(36px,8vw,72px);font-weight:700;line-height:1.15;letter-spacing:-0.03em;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#ffffff;text-decoration:underline;text-decoration-thickness:.06em;text-underline-offset:.12em">Notre approche<span data-arrow="right" aria-hidden="true" style="font-weight:300;font-size:.6em;color:#bdbdbd;display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">›</span></a>
+        <a href="#formations" onClick="{{ closeMenu }}" style="display:inline-flex;align-items:baseline;gap:.35em;color:#f4f4f4;text-decoration:none;font-size:clamp(36px,8vw,72px);font-weight:700;line-height:1.15;letter-spacing:-0.03em;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#ffffff;text-decoration:underline;text-decoration-thickness:.06em;text-underline-offset:.12em">Formations<span data-arrow="right" aria-hidden="true" style="font-weight:300;font-size:.6em;color:#bdbdbd;display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">›</span></a>
+    </div>
+  </nav>
+</div>
+<main id="top" style="padding-top:var(--milon-header-h, 72px)">
+  <section style="max-width:1440px;margin:0 auto;min-height:calc(100svh - var(--milon-header-h, 72px));display:flex;flex-direction:column;padding:clamp(24px,4svh,48px) clamp(20px,3vw,48px) clamp(20px,3vw,48px);box-sizing:border-box">
+    <div style="flex:1 1 auto;display:flex;align-items:center;padding:clamp(24px,4svh,64px) 0">
+      <h1 ref="{{ titleRef }}" style="margin:0;width:100%;max-width:none;font-size:var(--hero-fs, clamp(36px, 9.4vw, 148px));font-weight:800;line-height:1.18;letter-spacing:-0.035em;color:#000000">
+        <span data-line="1" style="display:block;width:max-content;white-space:nowrap">Un <button type="button" aria-pressed="{{ hl0Pressed }}" onClick="{{ pick0 }}" style="position:relative;display:inline-block;margin:0;padding:0;border:0;background:none;font:inherit;letter-spacing:inherit;line-height:inherit;color:var(--hl0-c, #a41034);transition:color 300ms ease;cursor:pointer">champion<span aria-hidden="true" style="position:absolute;left:0;right:0;bottom:-0.095em;height:0.11em;background:#e8e8e8;overflow:hidden"><span style="display:block;width:100%;height:100%;background:#000000;transform-origin:left center;transform:scaleX(var(--hl0-s, 1));transition:var(--hl-t, transform 450ms cubic-bezier(0.2, 0, 0, 1))"></span></span></button> ne se</span>
+        <span data-line="2" style="display:block;width:max-content;white-space:nowrap">fait <button type="button" aria-pressed="{{ hl1Pressed }}" onClick="{{ pick1 }}" style="position:relative;display:inline-block;margin:0;padding:0;border:0;background:none;font:inherit;letter-spacing:inherit;line-height:inherit;color:var(--hl1-c, #000000);transition:color 300ms ease;cursor:pointer">jamais seul<span aria-hidden="true" style="position:absolute;left:0;right:0;bottom:-0.095em;height:0.11em;background:#e8e8e8;overflow:hidden"><span style="display:block;width:100%;height:100%;background:#000000;transform-origin:left center;transform:scaleX(var(--hl1-s, 0));transition:var(--hl-t, transform 450ms cubic-bezier(0.2, 0, 0, 1))"></span></span></button>.</span>
+      </h1>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px 64px;align-items:flex-end;justify-content:space-between">
+      <p style="margin:0;max-width:46ch;font-size:20px;line-height:1.5;color:#222222;text-wrap:pretty">Derrière chaque jeune sportif, il y a des adultes qui le font grandir. Nous les formons pour mieux comprendre, mieux accompagner et transmettre.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px 32px">
+        <a href="#singulier" style="font-size:17px;font-weight:700;color:#000000;text-decoration:none;padding:10px 0;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#a41034">Découvrir l’Institut <span data-arrow="right" aria-hidden="true" style="display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span></a>
+        <a href="Contact Milon.dc.html" style="font-size:17px;font-weight:700;color:#000000;text-decoration:none;padding:10px 0;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#a41034">Échanger avec nous <span data-arrow="right" aria-hidden="true" style="display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showTicker }}" hint-placeholder-val="{{ true }}">
+    <section ref="{{ tickerRef }}" aria-label="Nos thèmes : rôle des parents, progression, communication, éducation sportive, transmission, vie de club, accompagnement, formation des éducateurs, patience, clarté, franchise, entourage, repères, écoute, confiance, pédagogie, grandir, accompagner, transmettre, comprendre" style="position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;gap:clamp(4px,1.2svh,16px);margin-top:clamp(56px,8vw,112px);padding:clamp(32px,5svh,64px) 0;background:#f4f4f4;box-sizing:border-box;overflow:hidden">
+      <div data-ticker-row="0" aria-hidden="true" style="display:flex;width:max-content;white-space:nowrap;will-change:transform;transform:translate3d(var(--tk0, 0px),0,0)">
+        <sc-for list="{{ tkRow0 }}" as="w" hint-placeholder-count="12"><span style="display:inline-flex;align-items:center;font-size:clamp(40px,min(7vw,12svh),120px);font-weight:300;line-height:1.15;letter-spacing:-0.02em;color:#222222">{{ w }}<span style="display:inline-block;margin:0 .35em;color:#a41034;font-weight:200">/</span></span></sc-for>
+      </div>
+      <div data-ticker-row="1" aria-hidden="true" style="display:flex;width:max-content;white-space:nowrap;will-change:transform;transform:translate3d(var(--tk1, 0px),0,0)">
+        <sc-for list="{{ tkRow1 }}" as="w" hint-placeholder-count="12"><span style="display:inline-flex;align-items:center;font-size:clamp(40px,min(7vw,12svh),120px);font-weight:300;line-height:1.15;letter-spacing:-0.02em;color:#222222">{{ w }}<span style="display:inline-block;margin:0 .35em;color:#a41034;font-weight:200">/</span></span></sc-for>
+      </div>
+      <div data-ticker-row="2" aria-hidden="true" style="display:flex;width:max-content;white-space:nowrap;will-change:transform;transform:translate3d(var(--tk2, 0px),0,0)">
+        <sc-for list="{{ tkRow2 }}" as="w" hint-placeholder-count="12"><span style="display:inline-flex;align-items:center;font-size:clamp(40px,min(7vw,12svh),120px);font-weight:300;line-height:1.15;letter-spacing:-0.02em;color:#222222">{{ w }}<span style="display:inline-block;margin:0 .35em;color:#a41034;font-weight:200">/</span></span></sc-for>
+      </div>
+      <div data-ticker-row="3" aria-hidden="true" style="display:flex;width:max-content;white-space:nowrap;will-change:transform;transform:translate3d(var(--tk3, 0px),0,0)">
+        <sc-for list="{{ tkRow3 }}" as="w" hint-placeholder-count="12"><span style="display:inline-flex;align-items:center;font-size:clamp(40px,min(7vw,12svh),120px);font-weight:300;line-height:1.15;letter-spacing:-0.02em;color:#222222">{{ w }}<span style="display:inline-block;margin:0 .35em;color:#a41034;font-weight:200">/</span></span></sc-for>
+      </div>
+      <div data-ticker-row="4" aria-hidden="true" style="display:flex;width:max-content;white-space:nowrap;will-change:transform;transform:translate3d(var(--tk4, 0px),0,0)">
+        <sc-for list="{{ tkRow4 }}" as="w" hint-placeholder-count="12"><span style="display:inline-flex;align-items:center;font-size:clamp(40px,min(7vw,12svh),120px);font-weight:300;line-height:1.15;letter-spacing:-0.02em;color:#222222">{{ w }}<span style="display:inline-block;margin:0 .35em;color:#a41034;font-weight:200">/</span></span></sc-for>
+      </div>
+    </section>
+  </sc-if>
+
+  <section id="singulier" style="background:#222222;color:#ffffff">
+    <div style="max-width:1440px;min-height:100svh;margin:0 auto;padding:clamp(72px,9vw,144px) clamp(20px,3vw,48px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:center">
+      <h2 style="margin:0;max-width:14ch;font-size:clamp(48px,8vw,128px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;color:#ffffff;text-wrap:balance">Qu’est-ce qui rend l’Institut Milon singulier ?</h2>
+      <div style="display:flex;justify-content:flex-end;margin-top:clamp(32px,5vw,64px)">
+        <div style="flex:0 1 560px;min-width:0">
+          <p style="margin:0;font-size:clamp(18px,1.5vw,22px);line-height:1.55;color:#ffffff;text-wrap:pretty">Nous croyons que les jeunes sportifs ont besoin d’un environnement qui comprend leur réalité. Nous aidons les parents, les éducateurs, les clubs et les structures sportives à développer leurs connaissances et leurs pratiques d’accompagnement.</p>
+          <a href="#approche" style="display:inline-block;margin-top:20px;font-size:17px;font-weight:700;color:#ffffff;text-decoration:none;padding:6px 0;transition:color 200ms ease" style-hover="color:#a41034;text-decoration:none">En savoir plus sur l’Institut <span data-arrow="right" aria-hidden="true" style="display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span></a>
+        </div>
+      </div>
+      <div style="margin-top:clamp(56px,7vw,104px);border-bottom:1px solid #444444">
+        <sc-for list="{{ values }}" as="v" hint-placeholder-count="5">
+          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 48px;padding:clamp(20px,2.6vw,36px) 0;border-top:1px solid #444444;color:#ffffff;transition:color 250ms ease" style-hover="color:#a41034">
+            <h3 style="margin:0;font-size:clamp(40px,6.4vw,104px);font-weight:300;line-height:1.05;letter-spacing:-0.035em;color:inherit"><span style="font-weight:400">{{ v.art }}</span>{{ v.word }}.</h3>
+            <p style="margin:0;flex:0 1 360px;font-size:17px;line-height:1.55;color:#bdbdbd;text-wrap:pretty">{{ v.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section aria-roledescription="carrousel" aria-label="Photographies de terrain (flèches gauche et droite pour naviguer)" tabIndex="0" onKeyDown="{{ carKey }}" style="outline-offset:-4px;position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;gap:28px;padding:clamp(32px,5svh,64px) 0;background:#ffffff;box-sizing:border-box;overflow:hidden">
+    <div data-car-viewport="true" style="position:relative;height:min(74svh,58vw);min-height:320px;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab">
+      <div style="display:flex;gap:20px;height:100%;transform:translateX(calc(50vw - var(--car-w, 66vw) / 2 - var(--car-i, 0) * (var(--car-w, 66vw) + 20px) + var(--car-drag, 0px)));transition:var(--car-t, transform 600ms cubic-bezier(0.2, 0, 0, 1))">
+        <sc-for list="{{ slides }}" as="s" hint-placeholder-count="0">
+          <div role="group" aria-roledescription="diapositive" aria-label="{{ s.label }}" onClick="{{ s.go }}" style="position:relative;flex:none;width:var(--car-w, 66vw);height:100%;border-radius:24px;overflow:hidden;background:#222222;cursor:pointer">
+            <div role="img" aria-label="{{ s.alt }}" style="position:absolute;inset:0;background-color:#222222;background-image:{{ s.bg }};background-size:cover;background-position:center;pointer-events:none"></div>
+            <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0) 38%)"></div>
+            <p style="position:absolute;left:clamp(20px,2.4vw,40px);top:clamp(20px,2.4vw,36px);margin:0;max-width:none;font-size:clamp(24px,2.6vw,40px);font-weight:600;line-height:1.1;letter-spacing:-0.02em;color:#ffffff">{{ s.title }}</p>
+          </div>
+        </sc-for>
+      </div>
+      <button type="button" aria-label="Photo précédente" onClick="{{ carPrev }}" style="position:absolute;top:50%;left:calc(50% - var(--car-w, 66vw) / 2);transform:translate(-50%,-50%);display:var(--car-prev, none);align-items:center;justify-content:center;width:56px;height:56px;border:0;border-radius:50%;background:#ffffff;box-shadow:0 4px 16px rgba(0,0,0,0.18);cursor:pointer;z-index:2;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="background:#f4f4f4"><svg data-arrow="left" aria-hidden="true" style="display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></button>
+      <button type="button" aria-label="Photo suivante" onClick="{{ carNext }}" style="position:absolute;top:50%;left:calc(50% + var(--car-w, 66vw) / 2);transform:translate(-50%,-50%);display:var(--car-next, flex);align-items:center;justify-content:center;width:56px;height:56px;border:0;border-radius:50%;background:#ffffff;box-shadow:0 4px 16px rgba(0,0,0,0.18);cursor:pointer;z-index:2;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="background:#f4f4f4"><svg data-arrow="right" aria-hidden="true" style="display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></button>
+    </div>
+    <div style="display:flex;justify-content:center;gap:4px">
+      <sc-for list="{{ slides }}" as="s" hint-placeholder-count="6"><button type="button" aria-label="{{ s.dotLabel }}" aria-current="{{ s.current }}" onClick="{{ s.go }}" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;padding:0;border:0;background:none;cursor:pointer;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease"><span style="display:block;width:10px;height:10px;border-radius:50%;background:var({{ s.dotVar }}, #c8c8c8);transition:background-color 200ms ease"></span></button></sc-for>
+    </div>
+  </section>
+
+  <section id="formations" style="max-width:1440px;min-height:100svh;margin:0 auto;padding:clamp(72px,9vw,144px) clamp(20px,3vw,48px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:center">
+    <h2 style="margin:0;max-width:14ch;font-size:clamp(48px,8vw,128px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;color:#222222;text-wrap:balance">Des formations pour chaque adulte qui accompagne</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:clamp(40px,5vw,64px)">
+      <sc-for list="{{ publics }}" as="p" hint-placeholder-count="4">
+        <a href="Contact Milon.dc.html" style="display:flex;flex-direction:column;min-height:340px;padding:28px;box-sizing:border-box;background:#a41034;color:#ffffff;text-decoration:none;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="background:#7e0c28;color:#ffffff">
+          <span style="font-size:26px;font-weight:700;line-height:1.15;letter-spacing:-0.015em">{{ p.title }}</span>
+          <span style="margin-top:28px;font-size:17px;line-height:1.55;text-wrap:pretty">{{ p.text }}</span>
+          <span data-arrow="right" aria-hidden="true" style="margin-top:auto;padding-top:24px;font-size:26px;line-height:1;display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+
+  <section id="approche" style="background:#f4f4f4;color:#222222">
+    <div style="max-width:1440px;min-height:100svh;margin:0 auto;padding:clamp(72px,9vw,144px) clamp(20px,3vw,48px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:center">
+      <h2 style="margin:0;max-width:none;font-size:clamp(48px,8vw,128px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;color:#222222">Comprendre.<br>Mettre en pratique.<br>Transmettre.</h2>
+      <div style="display:flex;justify-content:flex-end;margin-top:clamp(32px,5vw,64px)">
+        <div style="flex:0 1 560px;min-width:0">
+          <p style="margin:0;font-size:clamp(18px,1.5vw,22px);line-height:1.55;color:#222222;text-wrap:pretty">Une formation doit laisser des repères qui servent sur le terrain et au quotidien. Nous partons de situations concrètes, expliquons simplement les notions importantes, puis cherchons à rendre les connaissances applicables.</p>
+        </div>
+      </div>
+      <div style="margin-top:clamp(56px,7vw,104px);border-bottom:1px solid #c8c8c8">
+        <a href="#approche" style="display:flex;justify-content:space-between;align-items:center;gap:24px;padding:clamp(20px,2.6vw,36px) 0;border-top:1px solid #c8c8c8;font-size:clamp(32px,4.4vw,72px);font-weight:300;line-height:1.05;letter-spacing:-0.03em;color:#222222;text-decoration:none;transition:color 250ms ease" style-hover="color:#a41034;text-decoration:none">Découvrir notre approche<span data-arrow="right" aria-hidden="true" style="display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span></a>
+        <a href="#formations" style="display:flex;justify-content:space-between;align-items:center;gap:24px;padding:clamp(20px,2.6vw,36px) 0;border-top:1px solid #c8c8c8;font-size:clamp(32px,4.4vw,72px);font-weight:300;line-height:1.05;letter-spacing:-0.03em;color:#222222;text-decoration:none;transition:color 250ms ease" style-hover="color:#a41034;text-decoration:none">Explorer nos formations<span data-arrow="right" aria-hidden="true" style="display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <a id="contact" href="Contact Milon.dc.html" style="display:block;background:#a41034;color:#ffffff;text-decoration:none;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="background:#7e0c28;color:#ffffff">
+    <span style="max-width:1440px;margin:0 auto;padding:40px clamp(20px,3vw,48px);box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;gap:16px 64px">
+      <span style="flex:0 0 auto;font-size:26px;font-weight:800;letter-spacing:-0.015em">Échanger avec l’Institut</span>
+      <span style="flex:1 1 360px;font-size:clamp(20px,2vw,26px);line-height:1.3">Parce qu’un jeune ne grandit jamais seul.</span>
+      <span data-arrow="right" aria-hidden="true" style="font-size:32px;line-height:1;display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span>
+    </span>
+  </a>
+</main>
+<footer style="background:#222222;color:#ffffff">
+  <div style="max-width:1440px;margin:0 auto;padding:64px clamp(20px,3vw,48px) 32px;box-sizing:border-box">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px">
+      <a href="#top" aria-label="Institut Milon, retour en haut de page" style="display:flex;align-items:center;gap:14px;align-self:start;color:#ffffff;text-decoration:none;transition:opacity 200ms ease" style-hover="opacity:0.8">
+        <span aria-hidden="true" style="display:block;flex:none;width:54px;height:56px;background:#ffffff;-webkit-mask:url(assets/logo/embleme-masque-400.png) center / contain no-repeat;mask:url(assets/logo/embleme-masque-400.png) center / contain no-repeat"></span>
+        <span aria-hidden="true" style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;font-weight:600;letter-spacing:.34em;line-height:1">INSTITUT</span><span style="font-size:30px;font-weight:700;letter-spacing:.02em;line-height:.85">MILON</span></span>
+      </a>
+      
+      <div style="display:flex;flex-direction:column;gap:12px;font-size:17px">
+        <a href="Contact Milon.dc.html" style="color:#ffffff;text-decoration-color:#ffffff;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease">Nous contacter</a>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;margin-top:64px;padding-top:24px;border-top:1px solid #444444;font-size:14px;color:#bdbdbd">
+      <span>© 2026 Institut Milon</span>
+      <span style="display:flex;flex-wrap:wrap;gap:8px 20px">
+        <a href="#top" style="color:#bdbdbd;text-decoration:none;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#ffffff">Mentions légales</a>
+        <a href="#top" style="color:#bdbdbd;text-decoration:none;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#ffffff">Confidentialité</a>
+        <a href="#top" style="color:#bdbdbd;text-decoration:none;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#ffffff">Cookies</a>
+        <a href="#top" style="color:#bdbdbd;text-decoration:none;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#ffffff">Accessibilité</a>
+        <a href="Design System Milon.dc.html" style="color:#bdbdbd;text-decoration:none;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#ffffff">Design system</a>
+      </span>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;tickerScroll&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.6,&quot;min&quot;:0.2,&quot;max&quot;:1.5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Bandeau des thèmes&quot;},&quot;showTicker&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Bandeau des thèmes&quot;}}">
+class Component extends DCLogic {
+  state = { hl: 0, menuOpen: false, car: 0 };
+  headerRef = React.createRef();
+  titleRef = React.createRef();
+  tickerRef = React.createRef();
+  // Liens internes (#…) : défilement doux vers la section, en tenant compte de la barre fixe
+  onAnchorClick = (e) => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    const target = id === 'top' || !id ? document.body : document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    const reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    const y = target === document.body ? 0 : target.getBoundingClientRect().top + window.scrollY;
+    const header = this.headerRef.current || document.querySelector('header');
+    const goingUp = y < window.scrollY;
+    const offset = goingUp && header ? header.offsetHeight : 0;
+    window.scrollTo({ top: Math.max(0, y - offset), behavior: reduce ? 'auto' : 'smooth' });
+    if (history.replaceState) history.replaceState(null, '', '#' + (id || 'top'));
+    if (target !== document.body) {
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      setTimeout(() => target.focus({ preventScroll: true }), reduce ? 0 : 500);
+    }
+  };
+  // Flèches : léger glissement au survol ou au focus du lien / bouton, retour à l'état de base ensuite
+  arrowOn = (e) => {
+    const host = e.target && e.target.closest ? e.target.closest('a, button') : null;
+    if (!host || this.reduceArrows) return;
+    host.querySelectorAll('[data-arrow]').forEach((a) => { a.style.transform = 'translateX(' + (a.getAttribute('data-arrow') === 'left' ? -5 : 5) + 'px)'; });
+  };
+  arrowOff = (e) => {
+    const host = e.target && e.target.closest ? e.target.closest('a, button') : null;
+    if (!host || (e.relatedTarget && host.contains(e.relatedTarget))) return;
+    host.querySelectorAll('[data-arrow]').forEach((a) => { a.style.transform = ''; });
+  };
+  bindArrows = () => {
+    this.reduceArrows = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    document.addEventListener('mouseover', this.arrowOn);
+    document.addEventListener('mouseout', this.arrowOff);
+    document.addEventListener('focusin', this.arrowOn);
+    document.addEventListener('focusout', this.arrowOff);
+  };
+  unbindArrows = () => {
+    document.removeEventListener('mouseover', this.arrowOn);
+    document.removeEventListener('mouseout', this.arrowOff);
+    document.removeEventListener('focusin', this.arrowOn);
+    document.removeEventListener('focusout', this.arrowOff);
+  };
+
+  carI = 0;
+  carN = 6;
+  // Carrousel : la diapositive active est centrée, les voisines dépassent ; tout passe par des variables CSS sur <html>
+  carAcc = 0;
+  carLock = 0;
+  carDragging = false;
+  carDragged = false;
+  // Défilement horizontal (pavé tactile, molette Maj) : une diapositive par geste
+  carWheel = (e) => {
+    const dx = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0);
+    if (!dx) return;
+    e.preventDefault();
+    const now = Date.now();
+    if (now < this.carLock) { this.carAcc = 0; return; }
+    this.carAcc += dx;
+    if (Math.abs(this.carAcc) > 40) {
+      const dir = this.carAcc > 0 ? 1 : -1;
+      this.carAcc = 0;
+      this.carLock = now + 650;
+      this.carGo(this.carI + dir);
+    }
+  };
+  // Glisser au doigt ou à la souris
+  carDown = (e) => {
+    if (e.button != null && e.button !== 0) return;
+    this.carDragging = true;
+    this.carDragged = false;
+    this.carStart = e.clientX;
+    this.carDx = 0;
+    document.documentElement.style.setProperty('--car-t', 'none');
+  };
+  carMove = (e) => {
+    if (!this.carDragging) return;
+    this.carDx = e.clientX - this.carStart;
+    if (Math.abs(this.carDx) > 6) this.carDragged = true;
+    const atEdge = (this.carI === 0 && this.carDx > 0) || (this.carI === this.carN - 1 && this.carDx < 0);
+    document.documentElement.style.setProperty('--car-drag', (atEdge ? this.carDx / 3 : this.carDx).toFixed(1) + 'px');
+  };
+  carUp = () => {
+    if (!this.carDragging) return;
+    this.carDragging = false;
+    const dx = this.carDx || 0;
+    document.documentElement.style.setProperty('--car-drag', '0px');
+    this.carGo(Math.abs(dx) > 60 ? this.carI + (dx < 0 ? 1 : -1) : this.carI);
+    setTimeout(() => { this.carDragged = false; }, 0);
+  };
+  carLayout = () => {
+    const w = window.innerWidth;
+    document.documentElement.style.setProperty('--car-w', w < 768 ? '86vw' : 'min(66vw, 1240px)');
+  };
+  carGo = (i) => {
+    const n = this.carN;
+    const k = Math.max(0, Math.min(n - 1, i));
+    this.carI = k;
+    const root = document.documentElement.style;
+    root.setProperty('--car-t', this.reduce ? 'none' : 'transform 600ms cubic-bezier(0.2, 0, 0, 1)');
+    root.setProperty('--car-i', String(k));
+    root.setProperty('--car-prev', k === 0 ? 'none' : 'flex');
+    root.setProperty('--car-next', k === n - 1 ? 'none' : 'flex');
+    for (let d = 0; d < n; d++) root.setProperty('--car-dot' + d, d === k ? '#000000' : '#c8c8c8');
+    if (this.state.car !== k) this.setState({ car: k });
+  };
+  tkSets = [];
+  // Bandeau des thèmes : chaque ligne avance quand on descend et recule quand on remonte, une sur deux en sens inverse
+  measureTicker = () => {
+    const sec = this.tickerRef.current || document.querySelector('section[aria-label^="Nos thèmes"]');
+    if (!sec) return;
+    this.tkSets = [...sec.querySelectorAll('[data-ticker-row]')].map((r) => r.scrollWidth / 3);
+    this.updateTicker();
+  };
+  updateTicker = () => {
+    this.tkRaf = 0;
+    const sec = this.tickerRef.current || document.querySelector('section[aria-label^="Nos thèmes"]');
+    if (!sec || !this.tkSets.length) return;
+    const k = this.props.tickerScroll ?? 0.6;
+    const progress = this.reduce ? 0 : (window.innerHeight - sec.getBoundingClientRect().top) * k;
+    const root = document.documentElement.style;
+    this.tkSets.forEach((S, i) => {
+      if (!S) return;
+      const off = i * 0.37 * S;
+      const m = (((progress + off) % S) + S) % S;
+      const x = i % 2 === 0 ? -m : m - S;
+      root.setProperty('--tk' + i, x.toFixed(1) + 'px');
+    });
+  };
+  onTickerScroll = () => { if (!this.tkRaf) this.tkRaf = requestAnimationFrame(this.updateTicker); };
+  burgerRef = React.createRef();
+  closeRef = React.createRef();
+  menuOpen = false;
+  // Barre responsive : sous 1100px, liens dans un menu plein écran ; « Nous contacter » reste toujours visible
+  applyLayout = () => {
+    const w = window.innerWidth;
+    const mobile = w < 1100;
+    const small = w < 420;
+    const root = document.documentElement.style;
+    root.setProperty('--nav-desktop-display', mobile ? 'none' : 'flex');
+    root.setProperty('--nav-burger-display', mobile ? 'inline-flex' : 'none');
+    root.setProperty('--logo-h', small ? '32px' : '40px');
+    root.setProperty('--cta-px', small ? '12px' : mobile ? '16px' : '20px');
+    root.setProperty('--cta-fs', small ? '15px' : '16px');
+    if (!mobile && this.menuOpen) this.setMenu(false);
+  };
+  setMenu = (open) => {
+    this.menuOpen = open;
+    document.documentElement.style.setProperty('--menu-display', open ? 'flex' : 'none');
+    document.body.style.overflow = open ? 'hidden' : '';
+    this.setState({ menuOpen: open });
+    setTimeout(() => {
+      const target = open ? (this.closeRef.current || document.querySelector('[aria-label="Fermer le menu"]')) : (this.burgerRef.current || document.querySelector('[aria-controls="milon-menu"]'));
+      if (target && target.focus) target.focus();
+    }, 30);
+  };
+  hlActive = 0;
+  // Titre : deux lignes imposées, taille calculée pour occuper toute la largeur disponible
+  fitTitle = () => {
+    const h1 = this.titleRef.current || document.querySelector('main h1');
+    if (!h1) return;
+    const fs = parseFloat(getComputedStyle(h1).fontSize);
+    let maxW = 0;
+    h1.querySelectorAll('[data-line]').forEach((l) => { maxW = Math.max(maxW, l.getBoundingClientRect().width); });
+    if (!fs || !maxW) return;
+    const target = Math.max(30, Math.min((h1.clientWidth * 0.985) / (maxW / fs), 176, window.innerHeight * 0.24));
+    document.documentElement.style.setProperty('--hero-fs', target.toFixed(1) + 'px');
+  };
+  // Mise en avant au clic (principe du site HBS) : le mot choisi passe en carmin, sa barre se remplit de noir
+  measureHeader = () => {
+    const el = this.headerRef.current || document.querySelector('header');
+    if (el) document.documentElement.style.setProperty('--milon-header-h', Math.round(el.getBoundingClientRect().height) + 'px');
+  };
+  pickHl = (i) => {
+    const root = document.documentElement.style;
+    root.setProperty('--hl-t', this.reduce ? 'none' : 'transform 450ms cubic-bezier(0.2, 0, 0, 1)');
+    root.setProperty('--hl0-c', i === 0 ? '#a41034' : '#000000');
+    root.setProperty('--hl1-c', i === 1 ? '#a41034' : '#000000');
+    root.setProperty('--hl0-s', i === 0 ? '1' : '0');
+    root.setProperty('--hl1-s', i === 1 ? '1' : '0');
+    if (i !== this.state.hl) this.setState({ hl: i });
+  };
+  // La barre est pilotée directement par des variables CSS posées sur <header> (pas de rendu React à chaque défilement)
+  applyNav = () => {
+    const el = document.documentElement;
+    el.style.setProperty('--nav-bg', this.atTop ? 'transparent' : '#a41034');
+    el.style.setProperty('--nav-fg', this.atTop ? '#a41034' : '#ffffff');
+    el.style.setProperty('--nav-cta-hover', this.atTop ? '#ffffff' : '#a41034');
+    el.style.setProperty('--nav-y', this.navHidden ? '-100%' : '0px');
+    el.style.setProperty('--nav-transition', this.reduce ? 'none' : 'transform 300ms cubic-bezier(0.2, 0, 0, 1), background-color 200ms ease, color 200ms ease');
+  };
+  onScroll = () => {
+    const y = Math.max(0, window.scrollY || 0);
+    const delta = y - this.lastY;
+    const el = this.headerRef.current || document.querySelector('header');
+    const h = (el && el.offsetHeight) || 72;
+    const atTop = y < 8;
+    let hidden = this.navHidden;
+    if (atTop) hidden = false;
+    else if (delta > 4 && y > h) hidden = true;   // descente : la barre se retire
+    else if (delta < -4) hidden = false;          // remontée : elle réapparaît
+    if (Math.abs(delta) > 4 || atTop) this.lastY = y;
+    if (atTop !== this.atTop || hidden !== this.navHidden) { this.atTop = atTop; this.navHidden = hidden; this.applyNav(); }
+  };
+  componentDidMount() {
+    const reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    this.reduce = reduce;
+    this.applyNav();
+    this.fitTitle();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this.fitTitle);
+    window.addEventListener('resize', this.fitTitle);
+    this.lastY = window.scrollY || 0;
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+    // Hero = hauteur de l'écran moins la barre de navigation (qui passe sur plusieurs lignes en mobile)
+    this.applyLayout();
+    this.bindArrows();
+    document.addEventListener('click', this.onAnchorClick);
+    window.addEventListener('resize', this.applyLayout);
+    this.carLayout();
+    window.addEventListener('resize', this.carLayout);
+    this.carGo(0);
+    this.carEl = document.querySelector('[data-car-viewport]');
+    if (this.carEl) {
+      this.carEl.addEventListener('wheel', this.carWheel, { passive: false });
+      this.carEl.addEventListener('pointerdown', this.carDown);
+      window.addEventListener('pointermove', this.carMove);
+      window.addEventListener('pointerup', this.carUp);
+      window.addEventListener('pointercancel', this.carUp);
+    }
+    this.measureTicker();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this.measureTicker);
+    window.addEventListener('scroll', this.onTickerScroll, { passive: true });
+    window.addEventListener('resize', this.measureTicker);
+    this.measureHeader();
+    const el = this.headerRef.current || document.querySelector('header');
+    if (el && typeof ResizeObserver !== 'undefined') {
+      this.ro = new ResizeObserver(this.measureHeader);
+      this.ro.observe(el);
+    }
+    window.addEventListener('resize', this.measureHeader);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.fitTitle);
+    window.removeEventListener('resize', this.measureHeader);
+    window.removeEventListener('resize', this.applyLayout);
+    this.unbindArrows();
+    document.removeEventListener('click', this.onAnchorClick);
+    window.removeEventListener('resize', this.carLayout);
+    if (this.carEl) {
+      this.carEl.removeEventListener('wheel', this.carWheel);
+      this.carEl.removeEventListener('pointerdown', this.carDown);
+    }
+    window.removeEventListener('pointermove', this.carMove);
+    window.removeEventListener('pointerup', this.carUp);
+    window.removeEventListener('pointercancel', this.carUp);
+    window.removeEventListener('scroll', this.onTickerScroll);
+    window.removeEventListener('resize', this.measureTicker);
+    if (this.tkRaf) cancelAnimationFrame(this.tkRaf);
+    document.body.style.overflow = '';
+    if (this.ro) this.ro.disconnect();
+  }
+  renderVals() {
+    const heroVals = {
+      titleRef: this.titleRef,
+      hl0Pressed: this.state.hl === 0 ? 'true' : 'false',
+      hl1Pressed: this.state.hl === 1 ? 'true' : 'false',
+      pick0: () => this.pickHl(0),
+      pick1: () => this.pickHl(1),
+    };
+    const menuVals = {
+      burgerRef: this.burgerRef,
+      closeRef: this.closeRef,
+      menuOpenStr: this.state.menuOpen ? 'true' : 'false',
+      openMenu: () => this.setMenu(true),
+      closeMenu: () => this.setMenu(false),
+      menuKey: (e) => {
+        if (e.key === 'Escape') { e.preventDefault(); this.setMenu(false); return; }
+        if (e.key !== 'Tab') return;
+        const box = e.currentTarget;
+        const items = box.querySelectorAll('a[href], button');
+        if (!items.length) return;
+        const first = items[0], last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      },
+    };
+    const navVals = { revealNav: () => { if (this.navHidden) { this.navHidden = false; this.applyNav(); } } };
+    const rows = [["Rôle des parents","Progression","Communication","Éducation sportive"],["Transmission","Vie de club","Accompagnement","Formation des éducateurs"],["Patience","Clarté","Franchise","Entourage"],["Repères","Écoute","Confiance","Pédagogie"],["Grandir","Accompagner","Transmettre","Comprendre"]];
+    const tkVals = { tickerRef: this.tickerRef };
+    rows.forEach((r, i) => { tkVals['tkRow' + i] = [...r, ...r, ...r]; });
+    return {
+      ...navVals,
+      ...heroVals,
+      ...menuVals,
+      showTicker: this.props.showTicker ?? true,
+      ...tkVals,
+      carKey: (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); this.carGo(this.carI + 1); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); this.carGo(this.carI - 1); }
+      },
+      carPrev: () => this.carGo(this.carI - 1),
+      carNext: () => this.carGo(this.carI + 1),
+      slides: [
+        { title: 'Football américain', alt: 'Un joueur de football américain court ballon en main, poursuivi par un défenseur.' },
+        { title: 'Basket-ball', alt: 'Un joueur de basket-ball tire en suspension pendant un match en salle.' },
+        { title: 'La vie de club', alt: 'Une équipe de jeunes footballeurs pose, souriante, sur le terrain le soir.' },
+        { title: 'Le jour du match', alt: 'Les tribunes vides d’un grand stade de football avant une rencontre.' },
+        { title: 'Football amateur', alt: 'Deux joueurs de football amateur courent vers le ballon.' },
+        { title: 'L’esprit d’équipe', alt: 'Trois basketteurs posent avec leurs médailles et un trophée.' },
+      ].map((s, i) => ({ ...s, src: 'assets/photos/formation-' + (i + 1) + '.jpg', bg: 'url("assets/photos/formation-' + (i + 1) + '.jpg")', label: (i + 1) + ' sur 6', dotLabel: 'Aller à la photo ' + (i + 1), current: this.state.car === i ? 'true' : 'false', dotVar: '--car-dot' + i, go: () => { if (!this.carDragged) this.carGo(i); } })),
+      values: [
+        { art: 'La ', word: 'patience', text: 'La progression quotidienne est plus forte que l’éclat d’un seul jour.' },
+        { art: 'L’', word: 'entourage', text: 'Un jeune ne se construit pas seul ; adultes et communauté ont un rôle.' },
+        { art: 'La ', word: 'transmission', text: 'L’expérience est utile si elle passe à ceux qui viennent après.' },
+        { art: 'La ', word: 'clarté', text: 'Expliquer avec des phrases courtes et un exemple visible.' },
+        { art: 'La ', word: 'franchise', text: 'Dire ce qui est possible, difficile, inconnu ou encore non validé.' },
+      ],
+      publics: [
+        { title: 'Parents et familles', text: 'Comprendre le parcours sportif et éducatif, agir sans pression inutile.' },
+        { title: 'Éducateurs et entraîneurs', text: 'Améliorer l’accompagnement et la communication avec les jeunes.' },
+        { title: 'Clubs et associations', text: 'Structurer les pratiques et les compétences de toute une équipe.' },
+        { title: 'Collectivités et acteurs du sport', text: 'Faire monter en compétence les intervenants d’un territoire.' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

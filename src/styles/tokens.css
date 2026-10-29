@@ -1,0 +1,72 @@
+/* Institut Milon — tokens : polices, couleurs, mouvement, mise en page */
+
+/* Inter 4, police variable (axes wght 100–900 et opsz 14–32), fichiers Fontsource 5.3.0 */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-latin-opsz-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-latin-ext-opsz-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-latin-opsz-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-latin-ext-opsz-italic.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  /* Couleurs de référence */
+  --carmin: #a41034;
+  --noir: #000000;
+  --blanc: #ffffff;
+  --charbon: #222222;
+
+  /* Dérivés */
+  --carmin-survol: #7e0c28;
+  --gris-fond: #f4f4f4;
+  --texte-secondaire: #5c5c5c;
+  --texte-sur-charbon: #bdbdbd;
+  --filet-charbon: #444444;
+  --filet-gris: #c8c8c8;
+  --barre-inactive: #e8e8e8;
+  --bordure-champ: #8a8a8a;
+  --filet-clair: #e3e3e3;
+  --alerte-fond: #f8e7eb;
+
+  /* Typographie */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-features: "calt" 1, "ss03" 1;
+
+  /* Mouvement */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --duree-couleur: 200ms;
+  --duree-fleche: 250ms;
+  --duree-nav: 300ms;
+  --duree-barre: 450ms;
+  --duree-carrousel: 600ms;
+
+  /* Mise en page */
+  --conteneur: 1440px;
+  --marge-page: clamp(20px, 3vw, 48px);
+  --header-h: 72px; /* mesuré en JS (ResizeObserver) et posé sur <html> */
+}

@@ -1,0 +1,29 @@
+/* Institut Milon — formes, traits, élévation
+   Rayons 0–4px : rendu architectural, pas d'arrondis « startup » excessifs (brandbook §09).
+   Le trait bronze est le principal ornement de la marque (couverture, feed, manifeste). */
+
+:root {
+  --im-radius-0: 0;
+  --im-radius-1: 2px;
+  --im-radius-2: 4px;
+  --im-radius-control: var(--im-radius-1);   /* boutons, champs */
+  --im-radius-card: var(--im-radius-0);      /* cartes, encadrés, images */
+  --im-radius-overlay: var(--im-radius-2);   /* bandeau cookies, panneaux flottants */
+
+  /* Traits */
+  --im-border-width: 1px;
+  --im-border-width-strong: 2px;
+  --im-rule-width: 1px;          /* filet courant */
+  --im-rule-width-strong: 2px;   /* trait bronze d'en-tête (cartes, posts) */
+  --im-rule-short: 64px;         /* trait bronze court sous un titre */
+  --im-focus-width: 2px;
+  --im-focus-offset: 3px;
+
+  /* Élévation : aucune ombre décorative ; une seule ombre pour les couches flottantes */
+  --im-shadow-none: none;
+  --im-shadow-overlay: 0 16px 40px -12px rgba(19, 43, 56, 0.28);
+
+  --im-z-header: 100;
+  --im-z-overlay: 200;
+  --im-z-banner: 300;
+}

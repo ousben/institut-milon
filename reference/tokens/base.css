@@ -1,0 +1,66 @@
+/* Institut Milon — base élémentaire (reset léger, typographie, liens, focus) */
+
+html {
+  color: var(--im-text-primary);
+  background: var(--im-surface-page);
+  font-family: var(--font-sans);
+  font-size: 100%;
+  font-kerning: normal;
+  font-optical-sizing: auto;
+  font-feature-settings: var(--font-features);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
+}
+
+/* Les contrôles de formulaire n'héritent pas de la police par défaut */
+button, input, select, textarea, optgroup {
+  font-family: inherit;
+  font-kerning: inherit;
+  font-optical-sizing: inherit;
+  font-feature-settings: inherit;
+}
+
+h1, h2, h3, h4, p, blockquote, figure, ul, ol { margin: 0; }
+h1, h2, h3, h4 { text-wrap: balance; hyphens: manual; }
+p, li, blockquote, dd, figcaption { text-wrap: pretty; }
+p { max-width: var(--measure); }
+time, data { font-variant-numeric: tabular-nums; }
+img { max-width: 100%; display: block; }
+
+a {
+  color: var(--im-text-link);
+  text-decoration-line: underline;
+  text-decoration-color: var(--im-border-ornament);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.24em;
+  transition: color var(--im-duration-fast) var(--im-ease), text-decoration-color var(--im-duration-fast) var(--im-ease);
+}
+a:hover {
+  color: var(--im-text-link-hover);
+  text-decoration-color: currentColor;
+}
+
+:focus-visible {
+  outline: var(--im-focus-width) solid var(--im-focus-ring);
+  outline-offset: var(--im-focus-offset);
+}
+
+::selection { background: var(--im-selection); color: var(--im-bleu-ionien); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

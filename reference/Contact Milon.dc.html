@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url("fonts/inter-latin-opsz-normal.woff2") format("woff2")}
+body{margin:0;background:#ffffff;color:#222222;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-feature-settings:"calt" 1,"ss03" 1;-webkit-font-smoothing:antialiased}
+a{color:#222222;text-decoration-color:#a41034;text-underline-offset:.2em}
+a:hover{color:#a41034}
+</style>
+</helmet>
+<header style="border-bottom:1px solid #e3e3e3">
+  <div style="max-width:1440px;margin:0 auto;padding:12px clamp(20px,3vw,48px);min-height:72px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:16px">
+    <a href="Landing Milon.dc.html" aria-label="Institut Milon, accueil" style="display:flex;align-items:center;gap:10px;color:#a41034;text-decoration:none;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease">
+      <span aria-hidden="true" style="display:block;width:39px;height:40px;background:#a41034;-webkit-mask:url(assets/logo/embleme-masque-400.png) center / contain no-repeat;mask:url(assets/logo/embleme-masque-400.png) center / contain no-repeat"></span>
+      <span aria-hidden="true" style="display:flex;flex-direction:column;gap:3px"><span style="font-size:9px;font-weight:600;letter-spacing:.34em;line-height:1">INSTITUT</span><span style="font-size:22px;font-weight:700;letter-spacing:.02em;line-height:.85">MILON</span></span>
+    </a>
+    <a href="Landing Milon.dc.html" style="display:inline-flex;align-items:center;min-height:44px;font-size:16px;font-weight:600;color:#222222;text-decoration:none;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#a41034"><span data-arrow="left" aria-hidden="true" style="display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">←</span> Retour à l’accueil</a>
+  </div>
+</header>
+<main style="max-width:1440px;margin:0 auto;padding:clamp(56px,8vw,120px) clamp(20px,3vw,48px) clamp(72px,9vw,144px);box-sizing:border-box">
+  <h1 style="margin:0;max-width:14ch;font-size:clamp(48px,8vw,128px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;color:#222222;text-wrap:balance">Parlons de vos besoins.</h1>
+  <div style="display:flex;justify-content:flex-end;margin-top:clamp(32px,5vw,64px)">
+    <p style="margin:0;flex:0 1 560px;font-size:clamp(18px,1.5vw,22px);line-height:1.55;color:#222222;text-wrap:pretty">Vous représentez un club, une structure ou vous accompagnez un jeune sportif&#8239;? Décrivez-nous brièvement votre demande. Nous reviendrons vers vous avec une réponse adaptée.</p>
+  </div>
+  <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+    <div role="status" style="margin-top:clamp(48px,6vw,88px);padding:clamp(28px,4vw,56px);background:#f4f4f4;border-top:3px solid #a41034">
+      <p style="margin:0;font-size:clamp(28px,3vw,44px);font-weight:700;line-height:1.15;letter-spacing:-0.02em;color:#222222">Votre message est prêt.</p>
+      <p style="margin:16px 0 0;max-width:60ch;font-size:18px;line-height:1.55;color:#222222">Votre messagerie s’ouvre avec votre demande déjà rédigée&#8239;: il ne reste qu’à l’envoyer. Si rien ne s’ouvre, écrivez-nous directement à <a href="{{ mailtoHref }}">{{ email }}</a>.</p>
+      <button type="button" onClick="{{ reset }}" style="margin-top:28px;min-height:48px;padding:0 20px;border:1px solid #222222;background:#ffffff;font-family:inherit;font-size:16px;font-weight:600;color:#222222;cursor:pointer;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="background:#222222;color:#ffffff">Écrire un autre message</button>
+    </div>
+  </sc-if>
+  <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+    <form noValidate onSubmit="{{ submit }}" style="margin-top:clamp(48px,6vw,88px);padding-top:clamp(40px,5vw,64px);border-top:1px solid #c8c8c8">
+      <sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
+        <p role="alert" style="margin:0 0 32px;padding:16px 20px;background:#f8e7eb;font-size:16px;font-weight:600;line-height:1.5;color:#a41034">{{ errorSummary }}</p>
+      </sc-if>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px 32px">
+        <label style="display:flex;flex-direction:column;gap:10px;font-size:16px;font-weight:600;color:#222222">Vous êtes <span style="font-weight:400;color:#5c5c5c">(obligatoire)</span>
+          <select name="profil" required="required" defaultValue="" style="height:56px;padding:0 14px;border:1px solid #8a8a8a;border-radius:0;background:#ffffff;font-family:inherit;font-size:17px;color:#222222">
+            <option value="">Sélectionnez votre profil</option>
+            <option value="Parent ou famille">Parent ou famille</option>
+            <option value="Éducateur ou entraîneur">Éducateur ou entraîneur</option>
+            <option value="Club ou association">Club ou association</option>
+            <option value="Collectivité ou structure sportive">Collectivité ou structure sportive</option>
+            <option value="Autre">Autre</option>
+          </select>
+          <span style="font-size:14px;font-weight:500;color:#a41034">{{ errProfil }}</span>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:10px;font-size:16px;font-weight:600;color:#222222">Nom et prénom <span style="font-weight:400;color:#5c5c5c">(obligatoire)</span>
+          <input name="nom" autoComplete="name" required="required" style="height:56px;padding:0 14px;border:1px solid #8a8a8a;border-radius:0;font-family:inherit;font-size:17px;color:#222222">
+          <span style="font-size:14px;font-weight:500;color:#a41034">{{ errNom }}</span>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:10px;font-size:16px;font-weight:600;color:#222222">Adresse e-mail <span style="font-weight:400;color:#5c5c5c">(obligatoire)</span>
+          <input name="email" type="email" autoComplete="email" required="required" style="height:56px;padding:0 14px;border:1px solid #8a8a8a;border-radius:0;font-family:inherit;font-size:17px;color:#222222">
+          <span style="font-size:14px;font-weight:500;color:#a41034">{{ errEmail }}</span>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:10px;font-size:16px;font-weight:600;color:#222222">Structure <span style="font-weight:400;color:#5c5c5c">(facultatif)</span>
+          <input name="structure" autoComplete="organization" style="height:56px;padding:0 14px;border:1px solid #8a8a8a;border-radius:0;font-family:inherit;font-size:17px;color:#222222">
+        </label>
+        <label style="grid-column:1 / -1;display:flex;flex-direction:column;gap:10px;font-size:16px;font-weight:600;color:#222222">Votre demande <span style="font-weight:400;color:#5c5c5c">(obligatoire)</span>
+          <textarea name="message" rows="7" required="required" style="padding:14px;border:1px solid #8a8a8a;border-radius:0;font-family:inherit;font-size:17px;line-height:1.55;color:#222222;resize:vertical"></textarea>
+          <span style="font-size:14px;font-weight:500;color:#a41034">{{ errMessage }}</span>
+        </label>
+      </div>
+      <label style="display:grid;grid-template-columns:24px minmax(0,1fr);gap:14px;align-items:start;margin-top:32px;max-width:80ch;font-size:16px;line-height:1.5;color:#222222">
+        <input name="consent" type="checkbox" required="required" style="width:22px;height:22px;margin:1px 0 0;accent-color:#a41034">
+        <span>J’accepte que ces informations soient utilisées pour traiter ma demande. <span style="color:#5c5c5c">(obligatoire)</span><span style="display:block;margin-top:4px;font-size:14px;font-weight:500;color:#a41034">{{ errConsent }}</span></span>
+      </label>
+      <button type="submit" style="display:inline-flex;align-items:center;gap:12px;margin-top:40px;min-height:56px;padding:0 28px;border:0;background:#a41034;font-family:inherit;font-size:17px;font-weight:700;color:#ffffff;cursor:pointer;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="background:#7e0c28">Envoyer ma demande <span data-arrow="right" aria-hidden="true" style="display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span></button>
+      <p style="margin:16px 0 0;font-size:14px;line-height:1.45;color:#5c5c5c">L’envoi ouvre votre messagerie avec un message adressé à {{ email }}.</p>
+    </form>
+  </sc-if>
+</main>
+<footer style="background:#222222;color:#bdbdbd">
+  <div style="max-width:1440px;margin:0 auto;padding:28px clamp(20px,3vw,48px);box-sizing:border-box;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;font-size:14px">
+    <span>© 2026 Institut Milon</span>
+    <a href="Landing Milon.dc.html" style="color:#bdbdbd;text-decoration:none;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#ffffff">Retour à l’accueil</a>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;contact@institut-milon.fr&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;}}">
+class Component extends DCLogic {
+  state = { sent: false, errors: {} };
+  submit = (e) => {
+    e.preventDefault();
+    const f = e.currentTarget;
+    const d = new FormData(f);
+    const v = (k) => String(d.get(k) || '').trim();
+    const errors = {};
+    if (!v('profil')) errors.profil = 'Indiquez votre profil.';
+    if (!v('nom')) errors.nom = 'Indiquez votre nom et votre prénom.';
+    if (!v('email')) errors.email = 'Indiquez votre adresse e-mail.';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email'))) errors.email = 'Indiquez une adresse e-mail valide, par exemple nom@domaine.fr.';
+    if (!v('message')) errors.message = 'Décrivez brièvement votre demande.';
+    if (!d.get('consent')) errors.consent = 'Votre accord est nécessaire pour traiter votre demande.';
+    this.setState({ errors });
+    const order = ['profil', 'nom', 'email', 'message', 'consent'];
+    const first = order.find((k) => errors[k]);
+    if (first) { const el = f.elements[first]; if (el && el.focus) el.focus(); return; }
+    const to = this.email();
+    const subject = 'Demande de contact – ' + v('profil');
+    const body = ['Profil : ' + v('profil'), 'Nom : ' + v('nom'), 'E-mail : ' + v('email'), 'Structure : ' + (v('structure') || '—'), '', v('message')].join('\n');
+    this.setState({ sent: true });
+    window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  };
+  email = () => this.props.contactEmail ?? 'contact@institut-milon.fr';
+  // Flèches : léger glissement au survol ou au focus du lien / bouton, retour à l'état de base ensuite
+  arrowOn = (e) => {
+    const host = e.target && e.target.closest ? e.target.closest('a, button') : null;
+    if (!host || this.reduceArrows) return;
+    host.querySelectorAll('[data-arrow]').forEach((a) => { a.style.transform = 'translateX(' + (a.getAttribute('data-arrow') === 'left' ? -5 : 5) + 'px)'; });
+  };
+  arrowOff = (e) => {
+    const host = e.target && e.target.closest ? e.target.closest('a, button') : null;
+    if (!host || (e.relatedTarget && host.contains(e.relatedTarget))) return;
+    host.querySelectorAll('[data-arrow]').forEach((a) => { a.style.transform = ''; });
+  };
+  bindArrows = () => {
+    this.reduceArrows = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    document.addEventListener('mouseover', this.arrowOn);
+    document.addEventListener('mouseout', this.arrowOff);
+    document.addEventListener('focusin', this.arrowOn);
+    document.addEventListener('focusout', this.arrowOff);
+  };
+  unbindArrows = () => {
+    document.removeEventListener('mouseover', this.arrowOn);
+    document.removeEventListener('mouseout', this.arrowOff);
+    document.removeEventListener('focusin', this.arrowOn);
+    document.removeEventListener('focusout', this.arrowOff);
+  };
+  componentDidMount() { this.bindArrows(); }
+  componentWillUnmount() { this.unbindArrows(); }
+
+  renderVals() {
+    const er = this.state.errors || {};
+    const n = Object.keys(er).length;
+    return {
+      sent: this.state.sent,
+      showForm: !this.state.sent,
+      email: this.email(),
+      mailtoHref: 'mailto:' + this.email(),
+      submit: this.submit,
+      reset: () => this.setState({ sent: false, errors: {} }),
+      hasErrors: n > 0,
+      errorSummary: n === 1 ? 'Le formulaire contient une erreur, signalée sous le champ concerné.' : 'Le formulaire contient ' + n + ' erreurs, signalées sous les champs concernés.',
+      errProfil: er.profil || '',
+      errNom: er.nom || '',
+      errEmail: er.email || '',
+      errMessage: er.message || '',
+      errConsent: er.consent || '',
+    };
+  }
+}
+</script>
+</body>
+</html>
