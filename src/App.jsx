@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Accueil from './pages/Accueil.jsx';
+import Approche from './pages/Approche.jsx';
 import Contact from './pages/Contact.jsx';
 
 /** À chaque changement de route : retour en haut (ou vers l'ancre demandée). */
@@ -29,6 +30,7 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Accueil />} />
+        <Route path="/approche" element={<Approche />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

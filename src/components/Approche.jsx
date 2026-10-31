@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Fleche from './Fleche.jsx';
 import styles from './Approche.module.css';
 
@@ -22,10 +23,10 @@ export default function Approche() {
           </div>
         </div>
         <div className={styles.liens}>
-          <a href="#approche" className={styles.lien}>
+          <Link to="/approche" className={styles.lien}>
             Découvrir notre approche
             <Fleche />
-          </a>
+          </Link>
           <a href="#formations" className={styles.lien}>
             Explorer nos formations
             <Fleche />

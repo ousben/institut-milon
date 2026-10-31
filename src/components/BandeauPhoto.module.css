@@ -1,0 +1,11 @@
+.cadre {
+  padding: clamp(8px, 2vw, 24px) 0 clamp(56px, 7vw, 104px);
+}
+
+.photo {
+  position: relative;
+  width: 100%;
+  height: clamp(260px, 44vw, 760px);
+  background: var(--gris-photo);
+  overflow: hidden;
+}
