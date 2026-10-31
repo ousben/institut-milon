@@ -101,17 +101,21 @@
   align-items: baseline;
   gap: 0.35em;
   color: var(--gris-fond);
-  text-decoration: none;
+  text-decoration-line: none;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.12em;
   font-size: clamp(36px, 8vw, 72px);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.03em;
 }
+/* Rubrique active : soulignée ; survol : blanc et souligné */
+.actif {
+  text-decoration-line: underline;
+}
 .lien:hover {
   color: var(--blanc);
-  text-decoration: underline;
-  text-decoration-thickness: 0.06em;
-  text-underline-offset: 0.12em;
+  text-decoration-line: underline;
 }
 
 .chevron {

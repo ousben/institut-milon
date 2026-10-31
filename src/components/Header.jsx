@@ -1,14 +1,16 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo.jsx';
+import LienSite from './LienSite.jsx';
 import useScrollHeader from '../hooks/useScrollHeader.js';
+import { RUBRIQUES } from '../donnees/navigation.js';
 import styles from './Header.module.css';
 
 /**
- * Barre de navigation fixe de l'accueil. Sa hauteur est mesurée (ResizeObserver) et exposée
- * dans --header-h sur <html> ; le <main> s'en sert pour son padding-top.
+ * Barre de navigation fixe, commune aux pages. `current` souligne la rubrique active.
+ * Sa hauteur est mesurée (ResizeObserver) et exposée dans --header-h sur <html>.
  */
-export default function Header({ ref, burgerRef, menuOpen, onOpenMenu }) {
+export default function Header({ ref, burgerRef, menuOpen, onOpenMenu, current = 'none' }) {
   const { atTop, hidden, reveal } = useScrollHeader(ref);
 
   useEffect(() => {
@@ -39,19 +41,20 @@ export default function Header({ ref, burgerRef, menuOpen, onOpenMenu }) {
   return (
     <header ref={ref} className={classes} onFocus={reveal}>
       <div className={styles.inner}>
-        <a href="#top" aria-label="Institut Milon, accueil" className={styles.logoLink}>
+        <LienSite to="/" aria-label="Institut Milon, accueil" className={styles.logoLink}>
           <Logo />
-        </a>
+        </LienSite>
         <nav aria-label="Navigation principale" className={styles.nav}>
-          <a href="#singulier" className={styles.lien}>
-            L’Institut
-          </a>
-          <a href="#approche" className={styles.lien}>
-            Notre approche
-          </a>
-          <a href="#formations" className={styles.lien}>
-            Formations
-          </a>
+          {RUBRIQUES.map((r) => (
+            <LienSite
+              key={r.cle}
+              to={r.to}
+              aria-current={current === r.cle ? 'page' : undefined}
+              className={`${styles.lien} ${current === r.cle ? styles.actif : ''}`.trim()}
+            >
+              {r.libelle}
+            </LienSite>
+          ))}
         </nav>
         <div className={styles.actions}>
           <Link to="/contact" className={styles.cta}>

@@ -20,44 +20,49 @@ function Mot({ actif, onClick, children }) {
   );
 }
 
-/** Hero : titre sur deux lignes dont la taille remplit la largeur ; un mot mis en avant au clic. */
-export default function Hero() {
+/**
+ * Hero commun aux pages : titre sur des lignes imposées dont la taille remplit la largeur
+ * (useFitText), mots mis en avant au clic (un seul actif), paragraphe et liens en bas.
+ * `lignes` : tableau de lignes, chacune étant une suite de textes et de mots `{ mot, index }`.
+ */
+export default function Hero({ lignes, actifInitial = 0, paragraphe, liens = [] }) {
   const titreRef = useRef(null);
-  const [actif, setActif] = useState(0);
+  const [actif, setActif] = useState(actifInitial);
   useFitText(titreRef);
 
   return (
     <section className={styles.hero}>
       <div className={styles.titreZone}>
         <h1 ref={titreRef} className={styles.titre}>
-          <span data-line="1" className={styles.ligne}>
-            Un{' '}
-            <Mot actif={actif === 0} onClick={() => setActif(0)}>
-              champion
-            </Mot>
-            {' '}ne se
-          </span>
-          <span data-line="2" className={styles.ligne}>
-            fait{' '}
-            <Mot actif={actif === 1} onClick={() => setActif(1)}>
-              jamais seul
-            </Mot>
-            .
-          </span>
+          {lignes.map((segments, i) => (
+            <span key={i} data-line={i + 1} className={styles.ligne}>
+              {segments.map((segment, j) =>
+                typeof segment === 'string' ? (
+                  segment
+                ) : (
+                  <Mot key={j} actif={actif === segment.index} onClick={() => setActif(segment.index)}>
+                    {segment.mot}
+                  </Mot>
+                ),
+              )}
+            </span>
+          ))}
         </h1>
       </div>
       <div className={styles.bas}>
-        <p className={styles.texte}>
-          Derrière chaque jeune sportif, il y a des adultes qui le font grandir. Nous les formons pour
-          mieux comprendre, mieux accompagner et transmettre.
-        </p>
+        <p className={styles.texte}>{paragraphe}</p>
         <div className={styles.liens}>
-          <a href="#singulier" className={styles.lien}>
-            Découvrir l’Institut <Fleche />
-          </a>
-          <Link to="/contact" className={styles.lien}>
-            Échanger avec nous <Fleche />
-          </Link>
+          {liens.map((l) =>
+            l.href ? (
+              <a key={l.libelle} href={l.href} className={styles.lien}>
+                {l.libelle} <Fleche />
+              </a>
+            ) : (
+              <Link key={l.libelle} to={l.to} className={styles.lien}>
+                {l.libelle} <Fleche />
+              </Link>
+            ),
+          )}
         </div>
       </div>
     </section>

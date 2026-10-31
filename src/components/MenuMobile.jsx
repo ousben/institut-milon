@@ -1,19 +1,15 @@
 import { Link } from 'react-router-dom';
 import Logo from './Logo.jsx';
 import Fleche from './Fleche.jsx';
+import LienSite from './LienSite.jsx';
+import { RUBRIQUES } from '../donnees/navigation.js';
 import styles from './MenuMobile.module.css';
-
-const LIENS = [
-  ['#singulier', 'L’Institut'],
-  ['#approche', 'Notre approche'],
-  ['#formations', 'Formations'],
-];
 
 /**
  * Menu plein écran : fermeture par la croix, Échap ou un clic sur un lien ; focus piégé.
- * Le verrou du défilement et le retour du focus au hamburger sont gérés par la page Accueil.
+ * Le verrou du défilement et le retour du focus au hamburger sont gérés par le gabarit de page.
  */
-export default function MenuMobile({ open, onClose, closeRef }) {
+export default function MenuMobile({ open, onClose, closeRef, current = 'none' }) {
   const onKeyDown = (e) => {
     if (e.key === 'Escape') {
       e.preventDefault();
@@ -45,9 +41,9 @@ export default function MenuMobile({ open, onClose, closeRef }) {
       className={styles.menu}
     >
       <div className={styles.barre}>
-        <a href="#top" onClick={onClose} aria-label="Institut Milon, accueil" className={styles.logoLink}>
+        <LienSite to="/" onClick={onClose} aria-label="Institut Milon, accueil" className={styles.logoLink}>
           <Logo />
-        </a>
+        </LienSite>
         <div className={styles.actions}>
           <Link to="/contact" onClick={onClose} className={styles.cta}>
             Nous contacter
@@ -60,11 +56,17 @@ export default function MenuMobile({ open, onClose, closeRef }) {
       </div>
       <nav aria-label="Menu principal" className={styles.nav}>
         <div className={styles.liens}>
-          {LIENS.map(([href, libelle]) => (
-            <a key={href} href={href} onClick={onClose} className={styles.lien}>
-              {libelle}
+          {RUBRIQUES.map((r) => (
+            <LienSite
+              key={r.cle}
+              to={r.to}
+              onClick={onClose}
+              aria-current={current === r.cle ? 'page' : undefined}
+              className={`${styles.lien} ${current === r.cle ? styles.actif : ''}`.trim()}
+            >
+              {r.libelle}
               <Fleche className={styles.chevron}>›</Fleche>
-            </a>
+            </LienSite>
           ))}
         </div>
       </nav>

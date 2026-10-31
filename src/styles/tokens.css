@@ -52,6 +52,8 @@
   --bordure-champ: #8a8a8a;
   --filet-clair: #e3e3e3;
   --alerte-fond: #f8e7eb;
+  --gris-photo: #ececec; /* fond d'un emplacement de photo sur fond clair */
+  --gris-photo-sombre: #2f2f2f; /* fond d'un emplacement de photo sur charbon */
 
   /* Typographie */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;

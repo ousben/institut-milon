@@ -1,34 +1,50 @@
 import { Link } from 'react-router-dom';
 import Logo from './Logo.jsx';
+import LienSite from './LienSite.jsx';
+import BandeauContact from './BandeauContact.jsx';
+import { INFOS_SITE } from '../donnees/navigation.js';
 import styles from './Footer.module.css';
 
-const MENTIONS = ['Mentions légales', 'Confidentialité', 'Cookies', 'Accessibilité'];
-
-export default function Footer() {
+/** Pied de page commun, précédé du bandeau « Échanger avec l’Institut » (désactivable avec cta={false}). */
+export default function Footer({ cta = true }) {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.inner}>
-        <div className={styles.haut}>
-          <a href="#top" aria-label="Institut Milon, retour en haut de page" className={styles.logoLink}>
-            <Logo />
-          </a>
-          <div className={styles.colonne}>
-            <Link to="/contact" className={styles.contact}>
-              Nous contacter
-            </Link>
+    <>
+      {cta && <BandeauContact />}
+      <footer className={styles.footer}>
+        <div className={styles.inner}>
+          <div className={styles.haut}>
+            <LienSite to="/" aria-label="Institut Milon, accueil" className={styles.logoLink}>
+              <Logo />
+            </LienSite>
+            <div className={styles.adresse}>
+              <p className={styles.nom}>Institut Milon</p>
+              <p>
+                8 rue du Colisée
+                <br />
+                75008 Paris
+              </p>
+            </div>
+            <div className={styles.liens}>
+              <Link to="/contact" className={styles.lien}>
+                Nous contacter
+              </Link>
+              <a href="#top" className={styles.lien}>
+                Gérer mes cookies
+              </a>
+            </div>
+          </div>
+          <div className={styles.bas}>
+            <span className={styles.copyright}>© 2026 Institut Milon</span>
+            <nav aria-label="Informations du site" className={styles.infos}>
+              {INFOS_SITE.map((i) => (
+                <a key={i.libelle} href={i.to} className={styles.info}>
+                  {i.libelle}
+                </a>
+              ))}
+            </nav>
           </div>
         </div>
-        <div className={styles.bas}>
-          <span>© 2026 Institut Milon</span>
-          <span className={styles.mentions}>
-            {MENTIONS.map((m) => (
-              <a key={m} href="#top" className={styles.mention}>
-                {m}
-              </a>
-            ))}
-          </span>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 }

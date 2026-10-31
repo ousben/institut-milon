@@ -58,14 +58,18 @@
 
 .lien {
   color: var(--nav-fg);
-  text-decoration: none;
+  text-decoration-line: none;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35em;
   padding: 10px 0;
   transition: color 200ms ease;
 }
-.lien:hover {
+/* Rubrique active : soulignée ; survol : soulignement aussi */
+.lien:hover,
+.actif {
   color: var(--nav-fg);
-  text-decoration: underline;
-  text-decoration-color: currentColor;
+  text-decoration-line: underline;
 }
 
 .actions {

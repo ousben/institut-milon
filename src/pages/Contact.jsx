@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Logo from '../components/Logo.jsx';
+import { useRef, useState } from 'react';
+import Gabarit from '../components/Gabarit.jsx';
 import Fleche from '../components/Fleche.jsx';
+import useFitText from '../hooks/useFitText.js';
 import styles from './Contact.module.css';
 
+const TITRE = 'Nous contacter | Institut Milon';
 const CLE_WEB3FORMS = import.meta.env.VITE_WEB3FORMS_KEY;
 const EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'contact@institut-milon.fr';
 const ORDRE = ['profil', 'nom', 'email', 'message', 'consent'];
@@ -40,13 +41,11 @@ function Obligatoire() {
  * d'un mailto prérempli vers VITE_CONTACT_EMAIL.
  */
 export default function Contact() {
+  const titreRef = useRef(null);
   const [etat, setEtat] = useState('formulaire'); // formulaire | envoi | envoye | mailto
   const [erreurs, setErreurs] = useState({});
   const [echec, setEchec] = useState(false);
-
-  useEffect(() => {
-    document.title = 'Nous contacter | Institut Milon';
-  }, []);
+  useFitText(titreRef);
 
   const reinitialiser = () => {
     setEtat('formulaire');
@@ -118,27 +117,32 @@ export default function Contact() {
   const envoi = etat === 'envoi';
 
   return (
-    <>
-      <header className={styles.header}>
-        <div className={styles.headerInner}>
-          <Link to="/" aria-label="Institut Milon, accueil" className={styles.logoLink}>
-            <Logo />
-          </Link>
-          <Link to="/" className={styles.retour}>
-            <Fleche direction="left">←</Fleche>&nbsp;Retour à l’accueil
-          </Link>
+    <Gabarit current="none" titre={TITRE} cta={false}>
+      <section className={styles.hero}>
+        <div className={styles.titreZone}>
+          <h1 ref={titreRef} className={styles.titre}>
+            <span data-line="1" className={styles.ligne}>
+              Parlons de
+            </span>
+            <span data-line="2" className={styles.ligne}>
+              vos{' '}
+              <span className={styles.motFort}>
+                besoins
+                <span aria-hidden="true" className={styles.barre} />
+              </span>
+              .
+            </span>
+          </h1>
         </div>
-      </header>
-
-      <main id="contenu" tabIndex={-1} className={styles.main}>
-        <h1 className={styles.titre}>Parlons de vos besoins.</h1>
         <div className={styles.intro}>
           <p className={styles.introTexte}>
             Vous représentez un club, une structure ou vous accompagnez un jeune sportif&#8239;?
             Décrivez-nous brièvement votre demande. Nous reviendrons vers vous avec une réponse adaptée.
           </p>
         </div>
+      </section>
 
+      <section className={styles.contenu}>
         {etat === 'envoye' && (
           <div role="status" className={styles.confirmation}>
             <p className={styles.confirmationTitre}>Votre demande a bien été envoyée.</p>
@@ -289,16 +293,7 @@ export default function Contact() {
             )}
           </form>
         )}
-      </main>
-
-      <footer className={styles.footer}>
-        <div className={styles.footerInner}>
-          <span>© 2026 Institut Milon</span>
-          <Link to="/" className={styles.footerLien}>
-            Retour à l’accueil
-          </Link>
-        </div>
-      </footer>
-    </>
+      </section>
+    </Gabarit>
   );
 }
