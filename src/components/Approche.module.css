@@ -3,39 +3,18 @@
   color: var(--charbon);
 }
 
-.inner {
-  max-width: var(--conteneur);
-  min-height: 100svh;
-  margin: 0 auto;
-  padding: clamp(72px, 9vw, 144px) var(--marge-page);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .titre {
-  margin: 0;
   max-width: none;
-  font-size: clamp(48px, 8vw, 128px);
-  font-weight: 800;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
   color: var(--charbon);
 }
 
-.intro {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: clamp(32px, 5vw, 64px);
-}
-
-.introInner {
-  flex: 0 1 560px;
-  min-width: 0;
+.photo {
+  background: var(--gris-photo-doux);
 }
 
 .texte {
   margin: 0;
+  max-width: 560px;
   font-size: clamp(18px, 1.5vw, 22px);
   line-height: 1.55;
   color: var(--charbon);
@@ -43,7 +22,6 @@
 }
 
 .liens {
-  margin-top: clamp(56px, 7vw, 104px);
   border-bottom: 1px solid var(--filet-gris);
 }
 
@@ -52,12 +30,12 @@
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-  padding: clamp(20px, 2.6vw, 36px) 0;
+  padding: clamp(18px, 2vw, 28px) 0;
   border-top: 1px solid var(--filet-gris);
-  font-size: clamp(32px, 4.4vw, 72px);
+  font-size: clamp(26px, 2.8vw, 40px);
   font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
   color: var(--charbon);
   text-decoration: none;
   transition: color 250ms ease;

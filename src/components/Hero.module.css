@@ -115,3 +115,34 @@
     transition: none;
   }
 }
+
+/* Mot souligné fixe (pages secondaires) */
+.fort {
+  position: relative;
+  display: inline-block;
+  color: var(--carmin);
+}
+.barreFixe {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.095em;
+  height: 0.11em;
+  background: var(--noir);
+}
+
+/* Variante : paragraphe d'introduction décalé à droite */
+.intro {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: clamp(32px, 5vw, 64px);
+}
+.introTexte {
+  margin: 0;
+  flex: 0 1 560px;
+  min-width: 0;
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.55;
+  color: var(--charbon);
+  text-wrap: pretty;
+}

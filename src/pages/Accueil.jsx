@@ -1,5 +1,6 @@
 import Gabarit from '../components/Gabarit.jsx';
 import Hero from '../components/Hero.jsx';
+import BandeauPhoto from '../components/BandeauPhoto.jsx';
 import BandeauThemes from '../components/BandeauThemes.jsx';
 import Singulier from '../components/Singulier.jsx';
 import Carrousel from '../components/Carrousel.jsx';
@@ -29,6 +30,7 @@ export default function Accueil() {
         paragraphe="Derrière chaque jeune sportif, il y a des adultes qui le font grandir. Nous les formons pour mieux comprendre, mieux accompagner et transmettre."
         liens={LIENS}
       />
+      <BandeauPhoto src={null} alt="Un parent encourage son enfant au bord du terrain, lumière naturelle" />
       <BandeauThemes reduced={reduced} />
       <Singulier />
       <Carrousel />

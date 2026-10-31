@@ -34,9 +34,13 @@
   background: var(--carmin);
   color: var(--blanc);
   text-decoration: none;
+  transition:
+    color 400ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 400ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .carte:hover {
-  background: var(--carmin-survol);
+  background: var(--noir);
   color: var(--blanc);
 }
 

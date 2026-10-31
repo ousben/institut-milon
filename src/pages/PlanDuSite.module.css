@@ -1,0 +1,43 @@
+.contenu {
+  max-width: var(--conteneur);
+  margin: 0 auto;
+  padding: 0 var(--marge-page) clamp(72px, 9vw, 144px);
+}
+
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: clamp(48px, 5vw, 64px) clamp(32px, 4vw, 64px);
+}
+
+.rubrique {
+  margin: 0 0 16px;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--carmin);
+}
+
+.liste {
+  border-bottom: 1px solid var(--filet-gris);
+}
+
+.lien {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: clamp(18px, 2vw, 28px) 0;
+  border-top: 1px solid var(--filet-gris);
+  font-size: clamp(26px, 2.8vw, 40px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--charbon);
+  text-decoration: none;
+  transition: color 250ms ease;
+}
+.lien:hover {
+  color: var(--carmin);
+  text-decoration: none;
+}

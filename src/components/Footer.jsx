@@ -28,18 +28,18 @@ export default function Footer({ cta = true }) {
               <Link to="/contact" className={styles.lien}>
                 Nous contacter
               </Link>
-              <a href="#top" className={styles.lien}>
+              <Link to="/cookies#preferences" className={styles.lien}>
                 Gérer mes cookies
-              </a>
+              </Link>
             </div>
           </div>
           <div className={styles.bas}>
             <span className={styles.copyright}>© 2026 Institut Milon</span>
             <nav aria-label="Informations du site" className={styles.infos}>
               {INFOS_SITE.map((i) => (
-                <a key={i.libelle} href={i.to} className={styles.info}>
+                <Link key={i.libelle} to={i.to} className={styles.info}>
                   {i.libelle}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

@@ -54,6 +54,8 @@
   --alerte-fond: #f8e7eb;
   --gris-photo: #ececec; /* fond d'un emplacement de photo sur fond clair */
   --gris-photo-sombre: #2f2f2f; /* fond d'un emplacement de photo sur charbon */
+  --gris-photo-doux: #e4e4e4; /* fond d'un emplacement de photo sur gris clair */
+  --carmin-photo: #8c0e2c; /* fond d'un emplacement de photo sur carmin */
 
   /* Typographie */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;

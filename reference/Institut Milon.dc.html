@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./image-slot.js"></script>
+<style>
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url("fonts/inter-latin-opsz-normal.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url("fonts/inter-latin-ext-opsz-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+1E00-1EFF}
+body{margin:0;background:#ffffff;color:#222222;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-feature-settings:"calt" 1,"ss03" 1;font-optical-sizing:auto;-webkit-font-smoothing:antialiased}
+a{color:#222222;text-decoration-color:#a41034;text-underline-offset:.2em}
+a:hover{color:#a41034}
+</style>
+</helmet>
+<dc-import name="Milon Header" current="institut" hint-size="100%,72px"></dc-import>
+<main id="top" style="padding-top:var(--milon-header-h, 72px)">
+  <section style="max-width:1440px;margin:0 auto;min-height:calc(100svh - var(--milon-header-h, 72px));display:flex;flex-direction:column;padding:clamp(24px,4svh,48px) clamp(20px,3vw,48px) clamp(20px,3vw,48px);box-sizing:border-box">
+    <div style="flex:1 1 auto;display:flex;align-items:center;padding:clamp(24px,4svh,64px) 0">
+      <h1 ref="{{ titleRef }}" style="margin:0;width:100%;max-width:none;font-size:var(--hero-fs, clamp(36px, 9.4vw, 148px));font-weight:800;line-height:1.18;letter-spacing:-0.035em;color:#000000">
+        <span data-line="1" style="display:block;width:max-content;white-space:nowrap">La <button type="button" aria-pressed="{{ hl0Pressed }}" onClick="{{ pick0 }}" style="position:relative;display:inline-block;margin:0;padding:0;border:0;background:none;font:inherit;letter-spacing:inherit;line-height:inherit;color:var(--hl0-c, #000000);transition:color 300ms ease;cursor:pointer">force<span aria-hidden="true" style="position:absolute;left:0;right:0;bottom:-0.095em;height:0.11em;background:#e8e8e8;overflow:hidden"><span style="display:block;width:100%;height:100%;background:#000000;transform-origin:left center;transform:scaleX(var(--hl0-s, 0));transition:var(--hl-t, transform 450ms cubic-bezier(0.2, 0, 0, 1))"></span></span></button> se <button type="button" aria-pressed="{{ hl1Pressed }}" onClick="{{ pick1 }}" style="position:relative;display:inline-block;margin:0;padding:0;border:0;background:none;font:inherit;letter-spacing:inherit;line-height:inherit;color:var(--hl1-c, #a41034);transition:color 300ms ease;cursor:pointer">transmet<span aria-hidden="true" style="position:absolute;left:0;right:0;bottom:-0.095em;height:0.11em;background:#e8e8e8;overflow:hidden"><span style="display:block;width:100%;height:100%;background:#000000;transform-origin:left center;transform:scaleX(var(--hl1-s, 1));transition:var(--hl-t, transform 450ms cubic-bezier(0.2, 0, 0, 1))"></span></span></button>.</span>
+      </h1>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px 64px;align-items:flex-end;justify-content:space-between">
+      <p style="margin:0;max-width:46ch;font-size:clamp(17px, 0.9rem + 0.4vw, 20px);line-height:1.5;color:#222222;text-wrap:pretty">À l’Institut Milon, nous croyons que les jeunes ne se construisent pas seuls. Un parent qui comprend, un entraîneur qui explique et un club qui accompagne peuvent changer la qualité d’un parcours. Notre rôle est de transmettre des connaissances utiles aux adultes qui les entourent.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px 32px">
+        <a href="#histoire" style="font-size:17px;font-weight:700;color:#000000;text-decoration:none;padding:10px 0;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#a41034">Découvrir notre histoire <span data-arrow="right" aria-hidden="true" style="display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span></a>
+        <a href="Contact Milon.dc.html" style="font-size:17px;font-weight:700;color:#000000;text-decoration:none;padding:10px 0;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#a41034">Échanger avec nous <span data-arrow="right" aria-hidden="true" style="display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div style="padding:clamp(8px,2vw,24px) 0 clamp(56px,7vw,104px)">
+    <div style="position:relative;width:100%;height:clamp(260px,44vw,760px);background:#ececec;overflow:hidden"><image-slot id="institut-bandeau" shape="rect" placeholder="Un éducateur échange avec un jeune sportif, lumière naturelle" style="position:absolute;inset:0"></image-slot></div>
+  </div>
+
+  <section id="histoire" style="background:#222222;color:#ffffff;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(72px,9vw,144px) 0;box-sizing:border-box">
+    <div style="width:100%;max-width:1440px;margin:0 auto;padding:0 clamp(20px,3vw,48px);box-sizing:border-box">
+      <h2 style="margin:0;max-width:14ch;font-size:clamp(48px,8vw,128px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;color:#ffffff;text-wrap:balance">Notre histoire</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(32px,5vw,56px) 0;margin-top:clamp(40px,5vw,64px)">
+      <div style="position:relative;min-height:clamp(320px,42vw,640px);background:#2f2f2f;overflow:hidden"><image-slot id="institut-histoire" shape="rect" src="assets/photos/formation-4.jpg" placeholder="Pierre claire ou architecture classique, en texture secondaire" style="position:absolute;inset:0"></image-slot></div>
+      <div style="display:flex;flex-direction:column;justify-content:space-between;gap:clamp(32px,4vw,48px);padding:0 max(clamp(20px,3vw,48px), calc((100vw - 1440px) / 2 + 48px)) 0 clamp(20px,5vw,64px)">
+        <p style="margin:0;max-width:30ch;font-size:clamp(26px,2.6vw,40px);font-weight:300;line-height:1.25;letter-spacing:-0.02em;color:#ffffff;text-wrap:pretty">Il y a plus de 2&#8239;500 ans, à Crotone, vivait un lutteur nommé Milon. Six fois champion olympique. On raconte qu’il portait chaque jour un jeune veau, et que sa force grandissait avec lui.</p>
+        <p style="margin:0;max-width:560px;font-size:clamp(18px,1.5vw,22px);line-height:1.55;color:#bdbdbd;text-wrap:pretty">Mais Milon n’avançait pas seul. Il avait un maître et toute une ville autour de lui. À l’Institut Milon, nous formons aujourd’hui les adultes qui accompagnent les jeunes sportifs. Parce qu’un champion ne se fait jamais seul.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faits" style="background:#f4f4f4;color:#222222">
+    <div style="max-width:1440px;min-height:100svh;margin:0 auto;padding:clamp(72px,9vw,144px) clamp(20px,3vw,48px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:center">
+      <h2 style="margin:0;max-width:14ch;font-size:clamp(48px,8vw,128px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;color:#222222;text-wrap:balance">Faits et légendes</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,5vw,64px) clamp(32px,4vw,64px);margin-top:clamp(48px,6vw,88px)">
+        <div>
+          <h3 style="margin:0 0 clamp(16px,2vw,24px);font-size:clamp(22px,2vw,28px);font-weight:700;line-height:1.2;letter-spacing:-0.015em;color:#222222">Ce que rapportent les sources</h3>
+          <ul style="list-style:none;margin:0;padding:0;border-bottom:1px solid #c8c8c8">
+            <li style="padding:clamp(18px,2vw,28px) 0;border-top:1px solid #c8c8c8;font-size:clamp(22px,2.2vw,32px);font-weight:300;line-height:1.3;letter-spacing:-0.015em;color:#222222;text-wrap:pretty">Milon est un lutteur grec de Crotone, multiple champion des Jeux olympiques.</li>
+            <li style="padding:clamp(18px,2vw,28px) 0;border-top:1px solid #c8c8c8;font-size:clamp(22px,2.2vw,32px);font-weight:300;line-height:1.3;letter-spacing:-0.015em;color:#222222;text-wrap:pretty">Le récit souligne son lien avec Pythagore.</li>
+            <li style="padding:clamp(18px,2vw,28px) 0;border-top:1px solid #c8c8c8;font-size:clamp(22px,2.2vw,32px);font-weight:300;line-height:1.3;letter-spacing:-0.015em;color:#222222;text-wrap:pretty">Un jeune lutteur de sa ville finit par le battre.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin:0 0 clamp(16px,2vw,24px);font-size:clamp(22px,2vw,28px);font-weight:700;line-height:1.2;letter-spacing:-0.015em;color:#a41034">Selon la légende</h3>
+          <ul style="list-style:none;margin:0;padding:0;border-bottom:1px solid #c8c8c8">
+            <li style="padding:clamp(18px,2vw,28px) 0;border-top:1px solid #c8c8c8;font-size:clamp(22px,2.2vw,32px);font-weight:300;line-height:1.3;letter-spacing:-0.015em;color:#222222;text-wrap:pretty">Il aurait porté quotidiennement un veau jusqu’à ce que l’animal devienne adulte.</li>
+            <li style="padding:clamp(18px,2vw,28px) 0;border-top:1px solid #c8c8c8;font-size:clamp(22px,2.2vw,32px);font-weight:300;line-height:1.3;letter-spacing:-0.015em;color:#222222;text-wrap:pretty">Il aurait retenu un pilier pour aider son maître et ses proches.</li>
+            <li style="padding:clamp(18px,2vw,28px) 0;border-top:1px solid #c8c8c8;font-size:clamp(22px,2.2vw,32px);font-weight:300;line-height:1.3;letter-spacing:-0.015em;color:#222222;text-wrap:pretty">Le récit de sa mort dans un tronc fendu appartient à la tradition légendaire.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="manifeste" style="background:#a41034;color:#ffffff;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(72px,9vw,144px) 0;box-sizing:border-box">
+    <div style="width:100%;max-width:1440px;margin:0 auto;padding:0 clamp(20px,3vw,48px);box-sizing:border-box">
+      <h2 style="margin:0;max-width:15ch;font-size:clamp(48px,8vw,128px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;color:#ffffff;text-wrap:balance">Le sport fait grandir. Mais personne ne grandit seul.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(32px,5vw,56px) 0;margin-top:clamp(40px,5vw,64px)">
+      <div style="display:flex;flex-direction:column;justify-content:flex-end;gap:20px;padding:0 clamp(20px,5vw,64px) 0 max(clamp(20px,3vw,48px), calc((100vw - 1440px) / 2 + 48px));font-size:clamp(18px,1.5vw,22px);line-height:1.55;color:#ffffff">
+        <p style="margin:0;max-width:560px;text-wrap:pretty">Derrière chaque jeune sportif, il y a des parents qui soutiennent, des entraîneurs qui guident, des clubs qui accueillent et des adultes qui transmettent.</p>
+        <p style="margin:0;max-width:560px;text-wrap:pretty">Ces personnes ont besoin de repères. De mots simples. De connaissances concrètes. Nous croyons au travail patient, aux progrès du quotidien et à la responsabilité de transmettre ce que l’on apprend.</p>
+        <p style="margin:0;max-width:560px;font-weight:700;text-wrap:pretty">C’est pourquoi l’Institut Milon forme celles et ceux qui accompagnent. Pour mieux comprendre. Pour mieux agir. Pour grandir ensemble.</p>
+      </div>
+      <div style="position:relative;min-height:clamp(320px,42vw,640px);background:#8c0e2c;overflow:hidden"><image-slot id="institut-manifeste" shape="rect" src="assets/photos/formation-3.jpg" placeholder="Des parents et un entraîneur autour de jeunes sportifs, au bord du terrain" style="position:absolute;inset:0"></image-slot></div>
+    </div>
+  </section>
+
+  <section id="valeurs" style="max-width:1440px;min-height:100svh;margin:0 auto;padding:clamp(72px,9vw,144px) clamp(20px,3vw,48px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:center">
+    <h2 style="margin:0;max-width:14ch;font-size:clamp(48px,8vw,128px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;color:#222222;text-wrap:balance">Nos quatre valeurs</h2>
+    <div style="margin-top:clamp(56px,7vw,104px);border-bottom:1px solid #c8c8c8">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 48px;padding:clamp(20px,2.6vw,36px) 0;border-top:1px solid #c8c8c8;color:#222222;transition:color 250ms ease" style-hover="color:#a41034">
+        <h3 style="margin:0;font-size:clamp(40px,6.4vw,104px);font-weight:300;line-height:1.05;letter-spacing:-0.035em;color:inherit"><span style="font-weight:400">La </span>patience.</h3>
+        <p style="margin:0;flex:0 1 360px;font-size:17px;line-height:1.55;color:#5c5c5c;text-wrap:pretty">Ne pas vendre de transformation instantanée&#8239;; montrer le progrès dans la durée.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 48px;padding:clamp(20px,2.6vw,36px) 0;border-top:1px solid #c8c8c8;color:#222222;transition:color 250ms ease" style-hover="color:#a41034">
+        <h3 style="margin:0;font-size:clamp(40px,6.4vw,104px);font-weight:300;line-height:1.05;letter-spacing:-0.035em;color:inherit"><span style="font-weight:400">La </span>transmission.</h3>
+        <p style="margin:0;flex:0 1 360px;font-size:17px;line-height:1.55;color:#5c5c5c;text-wrap:pretty">Toujours relier savoir et accompagnement&#160;: ce que l’on apprend sert à d’autres.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 48px;padding:clamp(20px,2.6vw,36px) 0;border-top:1px solid #c8c8c8;color:#222222;transition:color 250ms ease" style-hover="color:#a41034">
+        <h3 style="margin:0;font-size:clamp(40px,6.4vw,104px);font-weight:300;line-height:1.05;letter-spacing:-0.035em;color:inherit"><span style="font-weight:400">La </span>clarté.</h3>
+        <p style="margin:0;flex:0 1 360px;font-size:17px;line-height:1.55;color:#5c5c5c;text-wrap:pretty">Expliquer avec des phrases courtes et un exemple visible.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 48px;padding:clamp(20px,2.6vw,36px) 0;border-top:1px solid #c8c8c8;color:#222222;transition:color 250ms ease" style-hover="color:#a41034">
+        <h3 style="margin:0;font-size:clamp(40px,6.4vw,104px);font-weight:300;line-height:1.05;letter-spacing:-0.035em;color:inherit"><span style="font-weight:400">La </span>franchise.</h3>
+        <p style="margin:0;flex:0 1 360px;font-size:17px;line-height:1.55;color:#5c5c5c;text-wrap:pretty">Dire ce qui est possible, difficile, inconnu ou encore non validé.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+<dc-import name="Milon Footer" hint-size="100%,560px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { hl: 1 };
+  titleRef = React.createRef();
+  // Taille commune à tous les titres de hero du site : celle du hero le plus chargé (« Comprendre. / Mettre en pratique. / Transmettre. »,
+  // 3 lignes + son paragraphe), qui doit tenir dans l'écran barre comprise. Même calcul sur chaque page = même taille partout.
+  heroProbe = () => {
+    if (this.probe) return this.probe;
+    const lines = ['Un champion ne se', 'fait jamais seul.', 'La force se transmet.', 'Comprendre.', 'Mettre en pratique.', 'Transmettre.', 'Former ceux', 'qui accompagnent.'];
+    const p = document.createElement('div');
+    p.setAttribute('aria-hidden', 'true');
+    p.style.cssText = 'position:absolute;left:-99999px;top:0;visibility:hidden;pointer-events:none';
+    p.innerHTML = '<div data-w style="font-size:100px;font-weight:800;line-height:1.18;letter-spacing:-0.035em;white-space:nowrap">' + lines.map((l) => '<span style="display:block;width:max-content">' + l + '</span>').join('') + '</div>'
+      + '<div data-row style="display:flex;flex-wrap:wrap;gap:16px 64px;align-items:flex-end;justify-content:space-between"><p style="margin:0;max-width:46ch;font-size:clamp(17px, 0.9rem + 0.4vw, 20px);line-height:1.5;text-wrap:pretty">Une formation doit laisser des repères qui servent sur le terrain et au quotidien. Nous partons de situations concrètes, expliquons simplement les notions importantes, puis cherchons à rendre les connaissances applicables aux besoins des participants.</p><div style="display:flex;flex-wrap:wrap;gap:12px 32px"><span style="font-size:17px;font-weight:700;padding:10px 0">Voir les trois étapes →</span><span style="font-size:17px;font-weight:700;padding:10px 0">Échanger avec nous →</span></div></div>';
+    document.body.appendChild(p);
+    this.probe = p;
+    return p;
+  };
+  // Mise en avant au clic (comme sur l'accueil) : le mot choisi passe en carmin, sa barre se remplit de noir
+  pickHl = (i) => {
+    const root = document.documentElement.style;
+    root.setProperty('--hl-t', this.reduce ? 'none' : 'transform 450ms cubic-bezier(0.2, 0, 0, 1)');
+    root.setProperty('--hl0-c', i === 0 ? '#a41034' : '#000000');
+    root.setProperty('--hl1-c', i === 1 ? '#a41034' : '#000000');
+    root.setProperty('--hl0-s', i === 0 ? '1' : '0');
+    root.setProperty('--hl1-s', i === 1 ? '1' : '0');
+    if (i !== this.state.hl) this.setState({ hl: i });
+  };
+  fitTitle = () => {
+    const h1 = this.titleRef.current || document.querySelector('main h1');
+    if (!h1) return;
+    const box = h1.parentElement, sec = h1.closest('section');
+    const width = h1.clientWidth;
+    if (!box || !sec || !width) return;
+    const p = this.heroProbe();
+    const row = p.querySelector('[data-row]');
+    row.style.width = width + 'px';
+    let ref = 0;
+    p.querySelectorAll('[data-w] span').forEach((s) => { ref = Math.max(ref, s.getBoundingClientRect().width); });
+    if (!ref) return;
+    const byWidth = (width * 0.985) / (ref / 100);
+    const vh = Math.min(window.innerHeight, document.documentElement.clientHeight || window.innerHeight);
+    const header = document.querySelector('header');
+    const s = getComputedStyle(sec), b = getComputedStyle(box);
+    const used = (header ? header.offsetHeight : 72) + parseFloat(s.paddingTop) + parseFloat(s.paddingBottom) + parseFloat(b.paddingTop) + parseFloat(b.paddingBottom) + row.offsetHeight + vh * 0.04;
+    const byHeight = (vh - used) / (3 * 1.18 + 0.1);
+    // Garde-fou : si le texte d'un titre change, sa ligne la plus longue doit toujours tenir dans la largeur
+    const fs = parseFloat(getComputedStyle(h1).fontSize);
+    let own = 0;
+    h1.querySelectorAll('[data-line]').forEach((l) => { own = Math.max(own, l.getBoundingClientRect().width); });
+    const byOwn = fs && own ? (width * 0.985) / (own / fs) : Infinity;
+    document.documentElement.style.setProperty('--hero-fs', Math.max(24, Math.min(176, byWidth, byHeight, byOwn)).toFixed(1) + 'px');
+  };
+  componentDidMount() {
+    this.reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    this.fitTitle();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this.fitTitle);
+    window.addEventListener('resize', this.fitTitle);
+    setTimeout(this.fitTitle, 300);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.fitTitle);
+    if (this.probe) this.probe.remove();
+  }
+  renderVals() {
+    return {
+      titleRef: this.titleRef,
+      hl0Pressed: this.state.hl === 0 ? 'true' : 'false',
+      hl1Pressed: this.state.hl === 1 ? 'true' : 'false',
+      pick0: () => this.pickHl(0),
+      pick1: () => this.pickHl(1),
+    };
+  }
+}
+</script>
+</body>
+</html>

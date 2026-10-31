@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./image-slot.js"></script>
+<style>
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url("fonts/inter-latin-opsz-normal.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url("fonts/inter-latin-ext-opsz-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+1E00-1EFF}
+body{margin:0;background:#ffffff;color:#222222;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-feature-settings:"calt" 1,"ss03" 1;font-optical-sizing:auto;-webkit-font-smoothing:antialiased}
+a{color:#222222;text-decoration-color:#a41034;text-underline-offset:.2em}
+a:hover{color:#a41034}
+</style>
+</helmet>
+<dc-import name="Milon Header" current="formations" hint-size="100%,72px"></dc-import>
+<main id="top" style="padding-top:var(--milon-header-h, 72px)">
+  <section style="max-width:1440px;margin:0 auto;min-height:calc(100svh - var(--milon-header-h, 72px));display:flex;flex-direction:column;padding:clamp(24px,4svh,48px) clamp(20px,3vw,48px) clamp(20px,3vw,48px);box-sizing:border-box">
+    <div style="flex:1 1 auto;display:flex;align-items:center;padding:clamp(24px,4svh,64px) 0">
+      <h1 ref="{{ titleRef }}" style="margin:0;width:100%;max-width:none;font-size:var(--hero-fs, clamp(36px, 9.4vw, 148px));font-weight:800;line-height:1.18;letter-spacing:-0.035em;color:#000000">
+        <span data-line="1" style="display:block;width:max-content;white-space:nowrap"><button type="button" aria-pressed="{{ hl0Pressed }}" onClick="{{ pick0 }}" style="position:relative;display:inline-block;margin:0;padding:0;border:0;background:none;font:inherit;letter-spacing:inherit;line-height:inherit;color:var(--hl0-c, #000000);transition:color 300ms ease;cursor:pointer">Former<span aria-hidden="true" style="position:absolute;left:0;right:0;bottom:-0.095em;height:0.11em;background:#e8e8e8;overflow:hidden"><span style="display:block;width:100%;height:100%;background:#000000;transform-origin:left center;transform:scaleX(var(--hl0-s, 0));transition:var(--hl-t, transform 450ms cubic-bezier(0.2, 0, 0, 1))"></span></span></button> ceux</span>
+        <span data-line="2" style="display:block;width:max-content;white-space:nowrap">qui <button type="button" aria-pressed="{{ hl1Pressed }}" onClick="{{ pick1 }}" style="position:relative;display:inline-block;margin:0;padding:0;border:0;background:none;font:inherit;letter-spacing:inherit;line-height:inherit;color:var(--hl1-c, #a41034);transition:color 300ms ease;cursor:pointer">accompagnent<span aria-hidden="true" style="position:absolute;left:0;right:0;bottom:-0.095em;height:0.11em;background:#e8e8e8;overflow:hidden"><span style="display:block;width:100%;height:100%;background:#000000;transform-origin:left center;transform:scaleX(var(--hl1-s, 1));transition:var(--hl-t, transform 450ms cubic-bezier(0.2, 0, 0, 1))"></span></span></button>.</span>
+      </h1>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px 64px;align-items:flex-end;justify-content:space-between">
+      <p style="margin:0;max-width:46ch;font-size:clamp(17px, 0.9rem + 0.4vw, 20px);line-height:1.5;color:#222222;text-wrap:pretty">Nos formations sont en cours de structuration. Vous accompagnez des jeunes sportifs et souhaitez échanger sur vos besoins&#8239;? Contactez l’Institut.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px 32px">
+        <a href="#publics" style="font-size:17px;font-weight:700;color:#000000;text-decoration:none;padding:10px 0;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#a41034">Nos champs d’intervention <span data-arrow="right" aria-hidden="true" style="display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span></a>
+        <a href="Contact Milon.dc.html" style="font-size:17px;font-weight:700;color:#000000;text-decoration:none;padding:10px 0;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#a41034">Échanger sur vos besoins <span data-arrow="right" aria-hidden="true" style="display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div style="padding:clamp(8px,2vw,24px) 0 clamp(56px,7vw,104px)">
+    <div style="position:relative;width:100%;height:clamp(260px,44vw,760px);background:#ececec;overflow:hidden"><image-slot id="formations-bandeau" shape="rect" placeholder="Un atelier de formation dans un club, encadrants réunis autour d’une table" style="position:absolute;inset:0"></image-slot></div>
+  </div>
+
+  <section id="publics" style="background:#f4f4f4;color:#222222">
+    <div style="max-width:1440px;min-height:100svh;margin:0 auto;padding:clamp(72px,9vw,144px) clamp(20px,3vw,48px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:center">
+      <h2 style="margin:0;max-width:14ch;font-size:clamp(48px,8vw,128px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;color:#222222;text-wrap:balance">Nos champs d’intervention</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px;margin-top:clamp(40px,5vw,64px)">
+        <div style="display:flex;flex-direction:column;background:#a41034;color:#ffffff;transition:background-color 200ms ease" style-hover="background:#7e0c28">
+          <div style="position:relative;aspect-ratio:16 / 9;background:#8c0e2c;overflow:hidden"><image-slot id="formations-parents" shape="rect" placeholder="Un parent et son enfant au bord du terrain" style="position:absolute;inset:0"></image-slot></div>
+          <a href="Contact Milon.dc.html" style="flex:1 1 auto;display:flex;flex-direction:column;min-height:300px;padding:clamp(28px,3vw,44px);box-sizing:border-box;color:#ffffff;text-decoration:none">
+          <span style="font-size:clamp(28px,2.6vw,40px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;text-wrap:balance">Parents et familles</span>
+          <span style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:24px;margin-top:clamp(28px,3vw,44px)">
+            <span style="display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.4)"><span style="font-size:15px;font-weight:700;line-height:1.3">Besoin principal</span><span style="font-size:17px;line-height:1.55;text-wrap:pretty">Comprendre le parcours sportif et éducatif, agir sans pression inutile.</span></span>
+            <span style="display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.4)"><span style="font-size:15px;font-weight:700;line-height:1.3">Notre réponse</span><span style="font-size:17px;line-height:1.55;text-wrap:pretty">Explications simples, repères concrets, pédagogie.</span></span>
+          </span>
+          <span data-arrow="right" aria-hidden="true" style="align-self:flex-start;margin-top:auto;padding-top:24px;font-size:28px;line-height:1;display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span>
+          </a>
+        </div>
+        <div style="display:flex;flex-direction:column;background:#a41034;color:#ffffff;transition:background-color 200ms ease" style-hover="background:#7e0c28">
+          <div style="position:relative;aspect-ratio:16 / 9;background:#8c0e2c;overflow:hidden"><image-slot id="formations-educateurs" shape="rect" placeholder="Un entraîneur explique un exercice à un jeune" style="position:absolute;inset:0"></image-slot></div>
+          <a href="Contact Milon.dc.html" style="flex:1 1 auto;display:flex;flex-direction:column;min-height:300px;padding:clamp(28px,3vw,44px);box-sizing:border-box;color:#ffffff;text-decoration:none">
+          <span style="font-size:clamp(28px,2.6vw,40px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;text-wrap:balance">Éducateurs et entraîneurs</span>
+          <span style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:24px;margin-top:clamp(28px,3vw,44px)">
+            <span style="display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.4)"><span style="font-size:15px;font-weight:700;line-height:1.3">Besoin principal</span><span style="font-size:17px;line-height:1.55;text-wrap:pretty">Améliorer l’accompagnement et la communication.</span></span>
+            <span style="display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.4)"><span style="font-size:15px;font-weight:700;line-height:1.3">Notre réponse</span><span style="font-size:17px;line-height:1.55;text-wrap:pretty">Méthodes, exemples, formation.</span></span>
+          </span>
+          <span data-arrow="right" aria-hidden="true" style="align-self:flex-start;margin-top:auto;padding-top:24px;font-size:28px;line-height:1;display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span>
+          </a>
+        </div>
+        <div style="display:flex;flex-direction:column;background:#a41034;color:#ffffff;transition:background-color 200ms ease" style-hover="background:#7e0c28">
+          <div style="position:relative;aspect-ratio:16 / 9;background:#8c0e2c;overflow:hidden"><image-slot id="formations-clubs" shape="rect" placeholder="Des encadrants de club réunis pour une session" style="position:absolute;inset:0"></image-slot></div>
+          <a href="Contact Milon.dc.html" style="flex:1 1 auto;display:flex;flex-direction:column;min-height:300px;padding:clamp(28px,3vw,44px);box-sizing:border-box;color:#ffffff;text-decoration:none">
+          <span style="font-size:clamp(28px,2.6vw,40px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;text-wrap:balance">Clubs et associations</span>
+          <span style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:24px;margin-top:clamp(28px,3vw,44px)">
+            <span style="display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.4)"><span style="font-size:15px;font-weight:700;line-height:1.3">Besoin principal</span><span style="font-size:17px;line-height:1.55;text-wrap:pretty">Structurer les pratiques et les compétences.</span></span>
+            <span style="display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.4)"><span style="font-size:15px;font-weight:700;line-height:1.3">Notre réponse</span><span style="font-size:17px;line-height:1.55;text-wrap:pretty">Parcours adaptés, ateliers, accompagnement.</span></span>
+          </span>
+          <span data-arrow="right" aria-hidden="true" style="align-self:flex-start;margin-top:auto;padding-top:24px;font-size:28px;line-height:1;display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span>
+          </a>
+        </div>
+        <div style="display:flex;flex-direction:column;background:#a41034;color:#ffffff;transition:background-color 200ms ease" style-hover="background:#7e0c28">
+          <div style="position:relative;aspect-ratio:16 / 9;background:#8c0e2c;overflow:hidden"><image-slot id="formations-collectivites" shape="rect" placeholder="Des intervenants d’une collectivité en formation" style="position:absolute;inset:0"></image-slot></div>
+          <a href="Contact Milon.dc.html" style="flex:1 1 auto;display:flex;flex-direction:column;min-height:300px;padding:clamp(28px,3vw,44px);box-sizing:border-box;color:#ffffff;text-decoration:none">
+          <span style="font-size:clamp(28px,2.6vw,40px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;text-wrap:balance">Collectivités et acteurs du sport</span>
+          <span style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:24px;margin-top:clamp(28px,3vw,44px)">
+            <span style="display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.4)"><span style="font-size:15px;font-weight:700;line-height:1.3">Besoin principal</span><span style="font-size:17px;line-height:1.55;text-wrap:pretty">Faire monter en compétence leurs intervenants.</span></span>
+            <span style="display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.4)"><span style="font-size:15px;font-weight:700;line-height:1.3">Notre réponse</span><span style="font-size:17px;line-height:1.55;text-wrap:pretty">Clarté de l’offre, réalisations vérifiables, interlocuteur identifié.</span></span>
+          </span>
+          <span data-arrow="right" aria-hidden="true" style="align-self:flex-start;margin-top:auto;padding-top:24px;font-size:28px;line-height:1;display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="attentes" style="background:#222222;color:#ffffff">
+    <div style="max-width:1440px;min-height:100svh;margin:0 auto;padding:clamp(72px,9vw,144px) clamp(20px,3vw,48px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:center">
+      <h2 style="margin:0;max-width:14ch;font-size:clamp(48px,8vw,128px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;color:#ffffff;text-wrap:balance">Que peut-on attendre d’une formation&#8239;?</h2>
+      <div style="display:flex;justify-content:flex-end;margin-top:clamp(32px,5vw,64px)">
+        <div style="flex:0 1 560px;min-width:0">
+          <p style="margin:0;font-size:clamp(18px,1.5vw,22px);line-height:1.55;color:#ffffff;text-wrap:pretty">Des contenus compréhensibles, applicables et honnêtes. Sans garantie de réussite professionnelle.</p>
+          <a href="Approche Milon.dc.html" style="display:inline-block;margin-top:20px;font-size:17px;font-weight:700;color:#ffffff;text-decoration:none;padding:6px 0;transition:color 200ms ease" style-hover="color:#a41034;text-decoration:none">Découvrir notre approche <span data-arrow="right" aria-hidden="true" style="display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<dc-import name="Milon Footer" hint-size="100%,560px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { hl: 1 };
+  titleRef = React.createRef();
+  // Mise en avant au clic (comme sur l'accueil) : le mot choisi passe en carmin, sa barre se remplit de noir
+  pickHl = (i) => {
+    const root = document.documentElement.style;
+    root.setProperty('--hl-t', this.reduce ? 'none' : 'transform 450ms cubic-bezier(0.2, 0, 0, 1)');
+    [0, 1].forEach((k) => {
+      root.setProperty('--hl' + k + '-c', k === i ? '#a41034' : '#000000');
+      root.setProperty('--hl' + k + '-s', k === i ? '1' : '0');
+    });
+    if (i !== this.state.hl) this.setState({ hl: i });
+  };
+  // Taille commune à tous les titres de hero du site : celle du hero le plus chargé (« Comprendre. / Mettre en pratique. / Transmettre. »,
+  // 3 lignes + son paragraphe), qui doit tenir dans l'écran barre comprise. Même calcul sur chaque page = même taille partout.
+  heroProbe = () => {
+    if (this.probe) return this.probe;
+    const lines = ['Un champion ne se', 'fait jamais seul.', 'La force se transmet.', 'Comprendre.', 'Mettre en pratique.', 'Transmettre.', 'Former ceux', 'qui accompagnent.'];
+    const p = document.createElement('div');
+    p.setAttribute('aria-hidden', 'true');
+    p.style.cssText = 'position:absolute;left:-99999px;top:0;visibility:hidden;pointer-events:none';
+    p.innerHTML = '<div data-w style="font-size:100px;font-weight:800;line-height:1.18;letter-spacing:-0.035em;white-space:nowrap">' + lines.map((l) => '<span style="display:block;width:max-content">' + l + '</span>').join('') + '</div>'
+      + '<div data-row style="display:flex;flex-wrap:wrap;gap:16px 64px;align-items:flex-end;justify-content:space-between"><p style="margin:0;max-width:46ch;font-size:clamp(17px, 0.9rem + 0.4vw, 20px);line-height:1.5;text-wrap:pretty">Une formation doit laisser des repères qui servent sur le terrain et au quotidien. Nous partons de situations concrètes, expliquons simplement les notions importantes, puis cherchons à rendre les connaissances applicables aux besoins des participants.</p><div style="display:flex;flex-wrap:wrap;gap:12px 32px"><span style="font-size:17px;font-weight:700;padding:10px 0">Voir les trois étapes →</span><span style="font-size:17px;font-weight:700;padding:10px 0">Échanger avec nous →</span></div></div>';
+    document.body.appendChild(p);
+    this.probe = p;
+    return p;
+  };
+  fitTitle = () => {
+    const h1 = this.titleRef.current || document.querySelector('main h1');
+    if (!h1) return;
+    const box = h1.parentElement, sec = h1.closest('section');
+    const width = h1.clientWidth;
+    if (!box || !sec || !width) return;
+    const p = this.heroProbe();
+    const row = p.querySelector('[data-row]');
+    row.style.width = width + 'px';
+    let ref = 0;
+    p.querySelectorAll('[data-w] span').forEach((s) => { ref = Math.max(ref, s.getBoundingClientRect().width); });
+    if (!ref) return;
+    const byWidth = (width * 0.985) / (ref / 100);
+    const vh = Math.min(window.innerHeight, document.documentElement.clientHeight || window.innerHeight);
+    const header = document.querySelector('header');
+    const s = getComputedStyle(sec), b = getComputedStyle(box);
+    const used = (header ? header.offsetHeight : 72) + parseFloat(s.paddingTop) + parseFloat(s.paddingBottom) + parseFloat(b.paddingTop) + parseFloat(b.paddingBottom) + row.offsetHeight + vh * 0.04;
+    const byHeight = (vh - used) / (3 * 1.18 + 0.1);
+    // Garde-fou : si le texte d'un titre change, sa ligne la plus longue doit toujours tenir dans la largeur
+    const fs = parseFloat(getComputedStyle(h1).fontSize);
+    let own = 0;
+    h1.querySelectorAll('[data-line]').forEach((l) => { own = Math.max(own, l.getBoundingClientRect().width); });
+    const byOwn = fs && own ? (width * 0.985) / (own / fs) : Infinity;
+    document.documentElement.style.setProperty('--hero-fs', Math.max(24, Math.min(176, byWidth, byHeight, byOwn)).toFixed(1) + 'px');
+  };
+  componentDidMount() {
+    this.reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    this.fitTitle();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this.fitTitle);
+    window.addEventListener('resize', this.fitTitle);
+    setTimeout(this.fitTitle, 300);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.fitTitle);
+    if (this.probe) this.probe.remove();
+  }
+  renderVals() {
+    return {
+      titleRef: this.titleRef,
+      hl0Pressed: this.state.hl === 0 ? 'true' : 'false',
+      hl1Pressed: this.state.hl === 1 ? 'true' : 'false',
+      pick0: () => this.pickHl(0),
+      pick1: () => this.pickHl(1),
+    };
+  }
+}
+</script>
+</body>
+</html>

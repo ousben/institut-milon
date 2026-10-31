@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Fleche from './Fleche.jsx';
 import styles from './Singulier.module.css';
 
@@ -21,9 +22,9 @@ export default function Singulier() {
               Nous aidons les parents, les éducateurs, les clubs et les structures sportives à développer
               leurs connaissances et leurs pratiques d’accompagnement.
             </p>
-            <a href="#approche" className={styles.lien}>
+            <Link to="/institut" className={styles.lien}>
               En savoir plus sur l’Institut <Fleche />
-            </a>
+            </Link>
           </div>
         </div>
         <div className={styles.valeurs}>

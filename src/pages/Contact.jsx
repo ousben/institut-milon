@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Gabarit from '../components/Gabarit.jsx';
+import Hero from '../components/Hero.jsx';
 import Fleche from '../components/Fleche.jsx';
-import useFitText from '../hooks/useFitText.js';
 import styles from './Contact.module.css';
 
 const TITRE = 'Nous contacter | Institut Milon';
@@ -9,6 +9,8 @@ const CLE_WEB3FORMS = import.meta.env.VITE_WEB3FORMS_KEY;
 const EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'contact@institut-milon.fr';
 const ORDRE = ['profil', 'nom', 'email', 'message', 'consent'];
 const EMAIL_VALIDE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+const LIGNES = [['Parlons de'], ['vos ', { fort: 'besoins' }, '.']];
 
 const PROFILS = [
   'Parent ou famille',
@@ -41,11 +43,9 @@ function Obligatoire() {
  * d'un mailto prérempli vers VITE_CONTACT_EMAIL.
  */
 export default function Contact() {
-  const titreRef = useRef(null);
   const [etat, setEtat] = useState('formulaire'); // formulaire | envoi | envoye | mailto
   const [erreurs, setErreurs] = useState({});
   const [echec, setEchec] = useState(false);
-  useFitText(titreRef);
 
   const reinitialiser = () => {
     setEtat('formulaire');
@@ -118,29 +118,15 @@ export default function Contact() {
 
   return (
     <Gabarit current="none" titre={TITRE} cta={false}>
-      <section className={styles.hero}>
-        <div className={styles.titreZone}>
-          <h1 ref={titreRef} className={styles.titre}>
-            <span data-line="1" className={styles.ligne}>
-              Parlons de
-            </span>
-            <span data-line="2" className={styles.ligne}>
-              vos{' '}
-              <span className={styles.motFort}>
-                besoins
-                <span aria-hidden="true" className={styles.barre} />
-              </span>
-              .
-            </span>
-          </h1>
-        </div>
-        <div className={styles.intro}>
-          <p className={styles.introTexte}>
-            Vous représentez un club, une structure ou vous accompagnez un jeune sportif&#8239;?
-            Décrivez-nous brièvement votre demande. Nous reviendrons vers vous avec une réponse adaptée.
-          </p>
-        </div>
-      </section>
+      <Hero
+        lignes={LIGNES}
+        intro={
+          <>
+            Vous représentez un club, une structure ou vous accompagnez un jeune sportif&#8239;? Décrivez-nous
+            brièvement votre demande. Nous reviendrons vers vous avec une réponse adaptée.
+          </>
+        }
+      />
 
       <section className={styles.contenu}>
         {etat === 'envoye' && (

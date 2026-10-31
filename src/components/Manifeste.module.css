@@ -1,0 +1,29 @@
+.section {
+  background: var(--carmin);
+  color: var(--blanc);
+}
+
+.titre {
+  max-width: 15ch;
+  color: var(--blanc);
+  text-wrap: balance;
+}
+
+.texte {
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.55;
+  color: var(--blanc);
+}
+.texte p {
+  margin: 0;
+  max-width: 560px;
+  text-wrap: pretty;
+}
+
+.fort {
+  font-weight: 700;
+}
+
+.photo {
+  background: var(--carmin-photo);
+}

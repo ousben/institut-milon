@@ -21,14 +21,32 @@ function Mot({ actif, onClick, children }) {
 }
 
 /**
- * Hero commun aux pages : titre sur des lignes imposées dont la taille remplit la largeur
- * (useFitText), mots mis en avant au clic (un seul actif), paragraphe et liens en bas.
- * `lignes` : tableau de lignes, chacune étant une suite de textes et de mots `{ mot, index }`.
+ * Hero commun aux pages : titre sur des lignes imposées dont la taille est commune à tout le site
+ * (useFitText). Chaque ligne est une suite de textes, de mots cliquables `{ mot, index }` (un seul
+ * actif, carmin avec barre pleine) ou d'un mot souligné fixe `{ fort }`.
+ * En bas : soit `paragraphe` + `liens` sur une ligne, soit un paragraphe `intro` décalé à droite.
  */
-export default function Hero({ lignes, actifInitial = 0, paragraphe, liens = [] }) {
+export default function Hero({ lignes, actifInitial = 0, paragraphe, liens = [], intro }) {
   const titreRef = useRef(null);
   const [actif, setActif] = useState(actifInitial);
   useFitText(titreRef);
+
+  const rendre = (segment, j) => {
+    if (typeof segment === 'string') return segment;
+    if (segment.fort) {
+      return (
+        <span key={j} className={styles.fort}>
+          {segment.fort}
+          <span aria-hidden="true" className={styles.barreFixe} />
+        </span>
+      );
+    }
+    return (
+      <Mot key={j} actif={actif === segment.index} onClick={() => setActif(segment.index)}>
+        {segment.mot}
+      </Mot>
+    );
+  };
 
   return (
     <section className={styles.hero}>
@@ -36,35 +54,33 @@ export default function Hero({ lignes, actifInitial = 0, paragraphe, liens = [] 
         <h1 ref={titreRef} className={styles.titre}>
           {lignes.map((segments, i) => (
             <span key={i} data-line={i + 1} className={styles.ligne}>
-              {segments.map((segment, j) =>
-                typeof segment === 'string' ? (
-                  segment
-                ) : (
-                  <Mot key={j} actif={actif === segment.index} onClick={() => setActif(segment.index)}>
-                    {segment.mot}
-                  </Mot>
-                ),
-              )}
+              {segments.map(rendre)}
             </span>
           ))}
         </h1>
       </div>
-      <div className={styles.bas}>
-        <p className={styles.texte}>{paragraphe}</p>
-        <div className={styles.liens}>
-          {liens.map((l) =>
-            l.href ? (
-              <a key={l.libelle} href={l.href} className={styles.lien}>
-                {l.libelle} <Fleche />
-              </a>
-            ) : (
-              <Link key={l.libelle} to={l.to} className={styles.lien}>
-                {l.libelle} <Fleche />
-              </Link>
-            ),
-          )}
+      {intro ? (
+        <div className={styles.intro}>
+          <p className={styles.introTexte}>{intro}</p>
         </div>
-      </div>
+      ) : (
+        <div className={styles.bas}>
+          <p className={styles.texte}>{paragraphe}</p>
+          <div className={styles.liens}>
+            {liens.map((l) =>
+              l.href ? (
+                <a key={l.libelle} href={l.href} className={styles.lien}>
+                  {l.libelle} <Fleche />
+                </a>
+              ) : (
+                <Link key={l.libelle} to={l.to} className={styles.lien}>
+                  {l.libelle} <Fleche />
+                </Link>
+              ),
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

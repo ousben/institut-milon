@@ -1,0 +1,54 @@
+/* Section « titre puis photo + texte » sur deux colonnes, pleine largeur (accueil, Institut) */
+.section {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(72px, 9vw, 144px) 0;
+}
+
+.titreZone {
+  width: 100%;
+  max-width: var(--conteneur);
+  margin: 0 auto;
+  padding: 0 var(--marge-page);
+}
+
+.titre {
+  margin: 0;
+  font-size: clamp(48px, 8vw, 128px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: clamp(32px, 5vw, 56px) 0;
+  margin-top: clamp(40px, 5vw, 64px);
+}
+
+.photo {
+  position: relative;
+  min-height: clamp(320px, 42vw, 640px);
+  overflow: hidden;
+}
+
+/* Texte à droite de la photo : marge extérieure alignée sur le conteneur de 1440 px */
+.texteDroite {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(32px, 4vw, 48px);
+  padding: 0 max(var(--marge-page), calc((100vw - 1440px) / 2 + 48px)) 0 clamp(20px, 5vw, 64px);
+}
+
+/* Texte à gauche de la photo */
+.texteGauche {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 0 clamp(20px, 5vw, 64px) 0 max(var(--marge-page), calc((100vw - 1440px) / 2 + 48px));
+}
