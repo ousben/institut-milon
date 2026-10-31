@@ -1,10 +1,10 @@
 # Institut Milon — site vitrine
 
 Site vitrine de l'Institut Milon : React 19 + Vite 8, JavaScript (pas de TypeScript), CSS classique
-et CSS Modules avec variables CSS. Deux routes : `/` (accueil) et `/contact`.
+et CSS Modules avec variables CSS. Trois routes : `/` (accueil), `/approche` (Notre approche) et `/contact`.
 
-Les pages de référence du design system (`reference/Landing Milon.dc.html`, `reference/Contact Milon.dc.html`)
-et les tokens (`reference/tokens/*.css`) sont la source de vérité : textes, ordre des sections, tailles,
+Les pages de référence du design system (`reference/*.dc.html` : landing, approche, contact, en-tête et pied de page
+partagés) et les tokens (`reference/tokens/*.css`) sont la source de vérité : textes, ordre des sections, tailles,
 couleurs et comportements sont repris de ces fichiers.
 
 ## Prérequis
@@ -67,16 +67,20 @@ index.html                 titre, description, favicons, préchargement d'Inter
 public/
   fonts/                   Inter variable (axes wght + opsz), Fontsource 5.3.0, licence SIL OFL 1.1
   assets/logo/             masque alpha de l'emblème (coloré en CSS par currentColor)
-  assets/photos/           six photographies du carrousel (1800 × 1200)
+  assets/photos/           six photographies (carrousel, étapes de l'approche), 1800 × 1200
   favicon-*.png, apple-touch-icon.png
 reference/                 pages et tokens du design system (source de vérité)
 scripts/favicons.mjs       génération des favicons
 src/
   main.jsx, App.jsx        routeur, lien d'évitement, retour en haut à chaque changement de route
-  pages/Accueil.jsx        assemble les sections de l'accueil, menu mobile, défilement doux
+  pages/Accueil.jsx        accueil : hero, bandeau des thèmes, singulier, carrousel, formations, approche
+  pages/Approche.jsx       Notre approche : hero, bandeau photo, trois étapes, promesse, positionnement
   pages/Contact.jsx        formulaire (validation, Web3Forms ou mailto)
-  components/              Header, MenuMobile, Hero, BandeauThemes, Singulier, Carrousel,
-                           Formations, Approche, BandeauContact, Footer, Logo, Fleche
+  components/Gabarit.jsx   gabarit commun : en-tête fixe, menu plein écran, contenu, pied de page
+  components/              Header, MenuMobile, Footer, BandeauContact, Logo, Fleche, LienSite, Hero,
+                           BandeauThemes, Singulier, Carrousel, Formations, Approche (section de
+                           l'accueil), BandeauPhoto, Photo, Etapes, Promesse, Positionnement
+  donnees/navigation.js    rubriques de la navigation et liens d'information du pied de page
   hooks/                   useScrollHeader, useFitText, useScrollTicker, useSmoothAnchors,
                            useReducedMotion
   styles/tokens.css        @font-face, couleurs, mouvement, mise en page
@@ -89,8 +93,9 @@ src/
   réapparaît en remontant ou au focus clavier. Sa hauteur mesurée est exposée dans `--header-h`.
 - Sous 1100 px, menu plein écran : focus piégé, fermeture par la croix, Échap ou un lien, défilement
   de la page bloqué, focus rendu au bouton hamburger.
-- Titre du hero sur deux lignes dont la taille est calculée pour remplir la largeur (max 176 px et
-  24 % de la hauteur d'écran) ; le mot actif est carmin avec sa barre pleine.
+- Titres de hero (accueil, approche, contact) à une taille commune calculée en JS : celle du hero le
+  plus chargé (trois lignes et son paragraphe) qui tient dans l'écran, barre comprise, max 176 px ;
+  le mot actif est carmin avec sa barre pleine.
 - Bandeau des thèmes piloté par le défilement (boucle sans couture, lignes alternées).
 - Carrousel : glisser (résistance aux extrémités), défilement horizontal, flèches du clavier, clic sur
   une voisine, boutons et points.
@@ -99,8 +104,17 @@ src/
 
 ## Écarts par rapport à la référence
 
-- Le lien « Design system » du pied de page de la référence renvoie vers une page du design system
-  qui ne fait pas partie du site ; il n'est pas repris.
+- Les pages « L’Institut », « Formations », le plan du site et les pages légales existent dans la
+  maquette mais ne sont pas encore implémentées : les liens « L’Institut » et « Formations » mènent
+  aux sections correspondantes de l'accueil, et les liens d'information du pied de page (plan du site,
+  mentions légales, confidentialité, cookies, accessibilité, « Gérer mes cookies ») ramènent
+  provisoirement en haut de page. Les cibles sont centralisées dans `src/donnees/navigation.js`.
+- Le bandeau photo de la page Notre approche attend son image (l'image déposée dans la maquette n'est
+  pas exportable) : déposez-la dans `public/assets/photos/` et renseignez `src` dans
+  `src/pages/Approche.jsx`. En attendant, l'emplacement affiche sa légende, comme dans la maquette.
+- La version la plus récente de la landing dans la maquette ajoute un bandeau photo sous le hero et
+  redessine la section « Comprendre. Mettre en pratique. Transmettre. » avec une photo ; ces
+  évolutions ne sont pas encore reprises.
 - Les photos sont les originaux Pexels (mêmes clichés que la référence) recadrés en 1800 × 1200.
 
 ## Licences

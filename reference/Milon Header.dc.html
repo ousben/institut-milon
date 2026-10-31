@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<header ref="{{ headerRef }}" onFocus="{{ revealNav }}" style="position:fixed;top:0;left:0;right:0;z-index:20;background:var(--nav-bg, transparent);color:var(--nav-fg, #a41034);transform:translateY(var(--nav-y, 0));transition:var(--nav-transition, transform 300ms cubic-bezier(0.2, 0, 0, 1), background-color 200ms ease, color 200ms ease)">
+  <div style="max-width:1440px;margin:0 auto;padding:12px clamp(20px,3vw,48px);min-height:72px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:12px 32px">
+    <a href="Landing Milon.dc.html" aria-label="Institut Milon, accueil" style="display:flex;align-items:center;gap:10px;color:var(--nav-fg, #a41034);text-decoration:none;transition:color 200ms ease">
+      <span aria-hidden="true" style="display:block;flex:none;width:calc(var(--logo-h, 40px) * 0.97);height:var(--logo-h, 40px);background:var(--nav-fg, #a41034);-webkit-mask:url(assets/logo/embleme-masque-400.png) center / contain no-repeat;mask:url(assets/logo/embleme-masque-400.png) center / contain no-repeat;transition:background-color 200ms ease"></span>
+      <span aria-hidden="true" style="display:flex;flex-direction:column;gap:3px"><span style="font-size:calc(var(--logo-h, 40px) * 0.225);font-weight:600;letter-spacing:.34em;line-height:1">INSTITUT</span><span style="font-size:calc(var(--logo-h, 40px) * 0.55);font-weight:700;letter-spacing:.02em;line-height:.85">MILON</span></span>
+    </a>
+    <nav aria-label="Navigation principale" style="display:var(--nav-desktop-display, flex);flex-wrap:wrap;gap:8px 32px;font-size:16px;line-height:1.2">
+      <a href="Institut Milon.dc.html" aria-current="{{ cur.institut }}" style="color:var(--nav-fg, #a41034);text-decoration-line:var(--nav-u-institut, none);text-decoration-color:currentColor;text-decoration-thickness:2px;text-underline-offset:.35em;padding:10px 0;transition:color 200ms ease" style-hover="text-decoration-line:underline">L’Institut</a>
+      <a href="Approche Milon.dc.html" aria-current="{{ cur.approche }}" style="color:var(--nav-fg, #a41034);text-decoration-line:var(--nav-u-approche, none);text-decoration-color:currentColor;text-decoration-thickness:2px;text-underline-offset:.35em;padding:10px 0;transition:color 200ms ease" style-hover="text-decoration-line:underline">Notre approche</a>
+      <a href="Formations Milon.dc.html" aria-current="{{ cur.formations }}" style="color:var(--nav-fg, #a41034);text-decoration-line:var(--nav-u-formations, none);text-decoration-color:currentColor;text-decoration-thickness:2px;text-underline-offset:.35em;padding:10px 0;transition:color 200ms ease" style-hover="text-decoration-line:underline">Formations</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a href="Contact Milon.dc.html" style="display:inline-flex;align-items:center;min-height:44px;padding:0 var(--cta-px, 20px);border:1px solid var(--nav-fg, #a41034);color:var(--nav-fg, #a41034);text-decoration:none;font-size:var(--cta-fs, 16px);font-weight:600;white-space:nowrap;transition:color 200ms ease, border-color 200ms ease, background-color 200ms ease" style-hover="background:var(--nav-fg, #a41034);color:var(--nav-cta-hover, #ffffff)">Nous contacter</a>
+      <button ref="{{ burgerRef }}" type="button" aria-label="Ouvrir le menu" aria-expanded="{{ menuOpenStr }}" aria-controls="milon-menu" onClick="{{ openMenu }}" style="display:var(--nav-burger-display, none);flex-direction:column;align-items:center;justify-content:center;gap:6px;width:44px;height:44px;padding:0;border:0;background:none;cursor:pointer;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease">
+        <span aria-hidden="true" style="display:block;width:26px;height:2px;background:var(--nav-fg, #a41034)"></span>
+        <span aria-hidden="true" style="display:block;width:26px;height:2px;background:var(--nav-fg, #a41034)"></span>
+        <span aria-hidden="true" style="display:block;width:26px;height:2px;background:var(--nav-fg, #a41034)"></span>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="milon-menu" role="dialog" aria-modal="true" aria-label="Menu" onKeyDown="{{ menuKey }}" style="display:var(--menu-display, none);position:fixed;inset:0;z-index:60;flex-direction:column;background:#222222;color:#ffffff;overflow-y:auto">
+  <div style="max-width:1440px;width:100%;margin:0 auto;padding:12px clamp(20px,3vw,48px);min-height:72px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:12px">
+    <a href="Landing Milon.dc.html" onClick="{{ closeMenu }}" aria-label="Institut Milon, accueil" style="display:flex;align-items:center;gap:10px;color:#ffffff;text-decoration:none;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease">
+      <span aria-hidden="true" style="display:block;flex:none;width:calc(var(--logo-h, 40px) * 0.97);height:var(--logo-h, 40px);background:#ffffff;-webkit-mask:url(assets/logo/embleme-masque-400.png) center / contain no-repeat;mask:url(assets/logo/embleme-masque-400.png) center / contain no-repeat;transition:background-color 200ms ease"></span>
+      <span aria-hidden="true" style="display:flex;flex-direction:column;gap:3px"><span style="font-size:calc(var(--logo-h, 40px) * 0.225);font-weight:600;letter-spacing:.34em;line-height:1">INSTITUT</span><span style="font-size:calc(var(--logo-h, 40px) * 0.55);font-weight:700;letter-spacing:.02em;line-height:.85">MILON</span></span>
+    </a>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a href="Contact Milon.dc.html" onClick="{{ closeMenu }}" style="display:inline-flex;align-items:center;min-height:44px;padding:0 var(--cta-px, 20px);border:1px solid #ffffff;color:#ffffff;text-decoration:none;font-size:var(--cta-fs, 16px);font-weight:600;white-space:nowrap;transition:color 200ms ease, border-color 200ms ease, background-color 200ms ease" style-hover="background:#ffffff;color:#222222">Nous contacter</a>
+      <button ref="{{ closeRef }}" type="button" aria-label="Fermer le menu" onClick="{{ closeMenu }}" style="position:relative;width:44px;height:44px;padding:0;border:0;background:none;cursor:pointer;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease">
+        <span aria-hidden="true" style="position:absolute;left:9px;top:21px;width:26px;height:2px;background:#ffffff;transform:rotate(45deg)"></span>
+        <span aria-hidden="true" style="position:absolute;left:9px;top:21px;width:26px;height:2px;background:#ffffff;transform:rotate(-45deg)"></span>
+      </button>
+    </div>
+  </div>
+  <nav aria-label="Menu principal" style="flex:1 1 auto;max-width:1440px;width:100%;margin:0 auto;padding:clamp(32px,8svh,96px) clamp(20px,3vw,48px) 48px;box-sizing:border-box">
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:clamp(8px,1.6svh,16px)">
+      <a href="Institut Milon.dc.html" aria-current="{{ cur.institut }}" onClick="{{ closeMenu }}" style="display:inline-flex;align-items:baseline;gap:.35em;color:#f4f4f4;text-decoration-line:var(--nav-u-institut, none);text-decoration-thickness:.06em;text-underline-offset:.12em;font-size:clamp(36px,8vw,72px);font-weight:700;line-height:1.15;letter-spacing:-0.03em;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#ffffff;text-decoration-line:underline">L’Institut<span data-arrow="right" aria-hidden="true" style="font-weight:300;font-size:.6em;color:#bdbdbd;display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">›</span></a>
+      <a href="Approche Milon.dc.html" aria-current="{{ cur.approche }}" onClick="{{ closeMenu }}" style="display:inline-flex;align-items:baseline;gap:.35em;color:#f4f4f4;text-decoration-line:var(--nav-u-approche, none);text-decoration-thickness:.06em;text-underline-offset:.12em;font-size:clamp(36px,8vw,72px);font-weight:700;line-height:1.15;letter-spacing:-0.03em;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#ffffff;text-decoration-line:underline">Notre approche<span data-arrow="right" aria-hidden="true" style="font-weight:300;font-size:.6em;color:#bdbdbd;display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">›</span></a>
+      <a href="Formations Milon.dc.html" aria-current="{{ cur.formations }}" onClick="{{ closeMenu }}" style="display:inline-flex;align-items:baseline;gap:.35em;color:#f4f4f4;text-decoration-line:var(--nav-u-formations, none);text-decoration-thickness:.06em;text-underline-offset:.12em;font-size:clamp(36px,8vw,72px);font-weight:700;line-height:1.15;letter-spacing:-0.03em;transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease" style-hover="color:#ffffff;text-decoration-line:underline">Formations<span data-arrow="right" aria-hidden="true" style="font-weight:300;font-size:.6em;color:#bdbdbd;display:inline-block;transition:transform 250ms cubic-bezier(0.2, 0, 0, 1)">›</span></a>
+    </div>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;72px&quot;},&quot;current&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;none&quot;,&quot;institut&quot;,&quot;approche&quot;,&quot;formations&quot;],&quot;default&quot;:&quot;none&quot;,&quot;tsType&quot;:&quot;'none' | 'institut' | 'approche' | 'formations'&quot;}}">
+class Component extends DCLogic {
+  state = { menuOpen: false };
+  headerRef = React.createRef();
+  burgerRef = React.createRef();
+  closeRef = React.createRef();
+  menuOpen = false;
+  atTop = true;
+  navHidden = false;
+  lastY = 0;
+  cur = () => this.props.current ?? 'none';
+  // Rubrique active : soulignée (variables CSS posées sur <html>)
+  applyCurrent = () => {
+    const c = this.cur();
+    ['institut', 'approche', 'formations'].forEach((k) => document.documentElement.style.setProperty('--nav-u-' + k, k === c ? 'underline' : 'none'));
+  };
+  // Barre transparente en haut (contenu carmin), carmin dès qu'on défile ; masquée à la descente, visible à la remontée
+  applyNav = () => {
+    const el = document.documentElement;
+    el.style.setProperty('--nav-bg', this.atTop ? 'transparent' : '#a41034');
+    el.style.setProperty('--nav-fg', this.atTop ? '#a41034' : '#ffffff');
+    el.style.setProperty('--nav-cta-hover', this.atTop ? '#ffffff' : '#a41034');
+    el.style.setProperty('--nav-y', this.navHidden ? '-100%' : '0px');
+    el.style.setProperty('--nav-transition', this.reduce ? 'none' : 'transform 300ms cubic-bezier(0.2, 0, 0, 1), background-color 200ms ease, color 200ms ease');
+  };
+  onScroll = () => {
+    const y = Math.max(0, window.scrollY || 0);
+    const delta = y - this.lastY;
+    const el = this.headerRef.current || document.querySelector('header');
+    const h = (el && el.offsetHeight) || 72;
+    const atTop = y < 8;
+    let hidden = this.navHidden;
+    if (atTop) hidden = false;
+    else if (delta > 4 && y > h) hidden = true;
+    else if (delta < -4) hidden = false;
+    if (Math.abs(delta) > 4 || atTop) this.lastY = y;
+    if (atTop !== this.atTop || hidden !== this.navHidden) { this.atTop = atTop; this.navHidden = hidden; this.applyNav(); }
+  };
+  // Sous 1100px : liens dans un menu plein écran ; « Nous contacter » reste visible
+  applyLayout = () => {
+    const w = window.innerWidth;
+    const mobile = w < 1100;
+    const small = w < 420;
+    const root = document.documentElement.style;
+    root.setProperty('--nav-desktop-display', mobile ? 'none' : 'flex');
+    root.setProperty('--nav-burger-display', mobile ? 'inline-flex' : 'none');
+    root.setProperty('--logo-h', small ? '32px' : '40px');
+    root.setProperty('--cta-px', small ? '12px' : mobile ? '16px' : '20px');
+    root.setProperty('--cta-fs', small ? '15px' : '16px');
+    if (!mobile && this.menuOpen) this.setMenu(false);
+  };
+  setMenu = (open) => {
+    this.menuOpen = open;
+    document.documentElement.style.setProperty('--menu-display', open ? 'flex' : 'none');
+    document.body.style.overflow = open ? 'hidden' : '';
+    this.setState({ menuOpen: open });
+    setTimeout(() => {
+      const target = open ? (this.closeRef.current || document.querySelector('[aria-label="Fermer le menu"]')) : (this.burgerRef.current || document.querySelector('[aria-controls="milon-menu"]'));
+      if (target && target.focus) target.focus();
+    }, 30);
+  };
+  measureHeader = () => {
+    const el = this.headerRef.current || document.querySelector('header');
+    if (el) document.documentElement.style.setProperty('--milon-header-h', Math.round(el.getBoundingClientRect().height) + 'px');
+  };
+  // Liens internes (#…) de la page : défilement doux, en tenant compte de la barre fixe
+  onAnchorClick = (e) => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    const target = id === 'top' || !id ? document.body : document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    const y = target === document.body ? 0 : target.getBoundingClientRect().top + window.scrollY;
+    const header = this.headerRef.current || document.querySelector('header');
+    const offset = y < window.scrollY && header ? header.offsetHeight : 0;
+    window.scrollTo({ top: Math.max(0, y - offset), behavior: this.reduce ? 'auto' : 'smooth' });
+    if (history.replaceState) history.replaceState(null, '', '#' + (id || 'top'));
+    if (target !== document.body) {
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      setTimeout(() => target.focus({ preventScroll: true }), this.reduce ? 0 : 500);
+    }
+  };
+  // Flèches : léger glissement au survol ou au focus du lien / bouton, retour à l'état de base ensuite
+  arrowOn = (e) => {
+    const host = e.target && e.target.closest ? e.target.closest('a, button') : null;
+    if (!host || this.reduce) return;
+    host.querySelectorAll('[data-arrow]').forEach((a) => { a.style.transform = 'translateX(' + (a.getAttribute('data-arrow') === 'left' ? -5 : 5) + 'px)'; });
+  };
+  arrowOff = (e) => {
+    const host = e.target && e.target.closest ? e.target.closest('a, button') : null;
+    if (!host || (e.relatedTarget && host.contains(e.relatedTarget))) return;
+    host.querySelectorAll('[data-arrow]').forEach((a) => { a.style.transform = ''; });
+  };
+  componentDidMount() {
+    this.reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    this.applyCurrent();
+    this.applyNav();
+    this.lastY = window.scrollY || 0;
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+    this.applyLayout();
+    window.addEventListener('resize', this.applyLayout);
+    document.addEventListener('click', this.onAnchorClick);
+    document.addEventListener('mouseover', this.arrowOn);
+    document.addEventListener('mouseout', this.arrowOff);
+    document.addEventListener('focusin', this.arrowOn);
+    document.addEventListener('focusout', this.arrowOff);
+    this.measureHeader();
+    const el = this.headerRef.current;
+    if (el && typeof ResizeObserver !== 'undefined') {
+      this.ro = new ResizeObserver(this.measureHeader);
+      this.ro.observe(el);
+    }
+    window.addEventListener('resize', this.measureHeader);
+  }
+  componentDidUpdate(prev) {
+    if (prev.current !== this.props.current) this.applyCurrent();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.applyLayout);
+    window.removeEventListener('resize', this.measureHeader);
+    document.removeEventListener('click', this.onAnchorClick);
+    document.removeEventListener('mouseover', this.arrowOn);
+    document.removeEventListener('mouseout', this.arrowOff);
+    document.removeEventListener('focusin', this.arrowOn);
+    document.removeEventListener('focusout', this.arrowOff);
+    document.body.style.overflow = '';
+    if (this.ro) this.ro.disconnect();
+  }
+  renderVals() {
+    const c = this.cur();
+    const v = (k) => (k === c ? 'page' : 'false');
+    return {
+      headerRef: this.headerRef,
+      burgerRef: this.burgerRef,
+      closeRef: this.closeRef,
+      cur: { institut: v('institut'), approche: v('approche'), formations: v('formations') },
+      revealNav: () => { if (this.navHidden) { this.navHidden = false; this.applyNav(); } },
+      menuOpenStr: this.state.menuOpen ? 'true' : 'false',
+      openMenu: () => this.setMenu(true),
+      closeMenu: () => this.setMenu(false),
+      menuKey: (e) => {
+        if (e.key === 'Escape') { e.preventDefault(); this.setMenu(false); return; }
+        if (e.key !== 'Tab') return;
+        const items = e.currentTarget.querySelectorAll('a[href], button');
+        if (!items.length) return;
+        const first = items[0], last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
